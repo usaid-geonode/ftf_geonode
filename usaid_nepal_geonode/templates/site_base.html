@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% block extra_head %}
+      <link href="{{ STATIC_URL }}css/site_base.css" rel="stylesheet"/>      
+{% endblock %}
+ {% block tabs %}
+ <li id="nav_layers">
+   <a href="{% url "layer_browse" %}">{% trans "Layers" %}</a>
+ </li>
+ <li id="nav_maps">
+   <a href="{% url "maps_browse" %}">{% trans "Maps" %}</a>
+ </li>
+ <li id="nav_documents">
+   <a href="{% url "document_browse" %}">{% trans "Documents" %}</a>
+ </li>
+<li id="nav_people">
+	<a href="{% url "profile_browse" %}">{% trans "People" %}</a>
+</li>
+<li id="nav_groups">
+	<a href="{% url "group_list" %}">{% trans "Groups" %}</a>
+</li>
+<li id="nav_help">
+	<a href="/help">Help</a>
+</li>
+{% endblock %}
+
+{% block extra_footer %}
+	<script src="{{ STATIC_URL }}js/site_base.js"></script>
+{% endblock %}

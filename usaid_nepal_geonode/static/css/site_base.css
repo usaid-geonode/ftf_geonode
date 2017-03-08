@@ -1,0 +1,9 @@
+.navbar-brand {
+    height: 72px;
+    background: url(../img/usaid_nepal_geonode_logo.png) no-repeat;
+    background-position: center;
+}
+
+.home .jumbotron {
+	background: url(../img/background.jpg) no-repeat;
+}
