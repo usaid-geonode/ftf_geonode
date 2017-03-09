@@ -38,7 +38,7 @@ from paver.easy import path, sh, info, call_task
 from paver.easy import BuildFailure
 
 try:
-    from usaid_nepal_geonode.settings import GEONODE_APPS
+    from ftf_geonode.settings import GEONODE_APPS
 except:
     # probably trying to run install_win_deps.
     pass
@@ -340,7 +340,7 @@ def stop():
 @task
 def start_django():
     """
-    Start the USAID Nepal GeoNode Django application
+    Start the FTF GeoNode Django application
     """
     bind = options.get('bind', '')
     foreground = '' if options.get('foreground', False) else '&'
@@ -356,7 +356,7 @@ def start_geoserver(options):
     Start GeoServer with GeoNode extensions
     """
 
-    from usaid_nepal_geonode.settings import OGC_SERVER
+    from ftf_geonode.settings import OGC_SERVER
     GEOSERVER_BASE_URL = OGC_SERVER['default']['LOCATION']
     url = GEOSERVER_BASE_URL
 
@@ -515,8 +515,8 @@ def reset():
 
 
 def _reset():
-    sh("rm -rf usaid_nepal_geonode/development.db")
-    sh("rm -rf usaid_nepal_geonode/uploaded/*")
+    sh("rm -rf ftf_geonode/development.db")
+    sh("rm -rf ftf_geonode/uploaded/*")
     _install_data_dir()
 
 

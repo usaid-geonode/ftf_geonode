@@ -56,10 +56,10 @@ docs/_build/
 # PyBuilder
 target/
 
-# USAID Nepal GeoNode
+# FTF GeoNode
 downloaded/
 geoserver/
 uploaded/
-usaid_nepal_geonode.egg-info
+ftf_geonode.egg-info
 development.db
 development.db-journal

@@ -50,7 +50,7 @@ sitemaps = {
 
 urlpatterns = patterns('',
 
-                       # USAID Nepal Pages
+                       # FTF Pages
 
                        # Static pages
                        url(r'^/?$', TemplateView.as_view(template_name='site_index.html'), name='home'),

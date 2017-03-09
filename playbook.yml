@@ -1,12 +1,12 @@
-- name: Provision USAID Nepal GeoNode into Production
+- name: Provision FTF GeoNode into Production
   hosts: production
   remote_user: ubuntu
   vars:
-    app_name: usaid_nepal_geonode
-    github_user: usaid-nepal-geonode
+    app_name: ftf_geonode
+    github_user: ftf-geonode
     server_name: 0.0.0.0
     deploy_user: ubuntu
-    code_repository: "https://github.com/usaid-nepal-geonode/usaid_nepal_geonode.git"
+    code_repository: "https://github.com/ftf-geonode/ftf_geonode.git"
     branch_name: master
     virtualenv_dir: "/home/ubuntu/.venvs"
     site_url: "http://localhost:8000/"

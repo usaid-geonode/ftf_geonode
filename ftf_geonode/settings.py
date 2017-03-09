@@ -22,8 +22,8 @@
 import os
 from kombu import Queue
 from geonode import __file__ as geonode_path
-from usaid_nepal_geonode import get_version
-from usaid_nepal_geonode.celeryapp import app  # flake8: noqa
+from ftf_geonode import get_version
+from ftf_geonode.celeryapp import app  # flake8: noqa
 import djcelery
 import dj_database_url
 
@@ -214,7 +214,7 @@ _DEFAULT_LOCALE_PATHS = (
 LOCALE_PATHS = os.getenv('LOCALE_PATHS',_DEFAULT_LOCALE_PATHS)
 
 # Location of url mappings
-ROOT_URLCONF = os.getenv('ROOT_URLCONF', 'usaid_nepal_geonode.urls')
+ROOT_URLCONF = os.getenv('ROOT_URLCONF', 'ftf_geonode.urls')
 
 # Login and logout urls override
 LOGIN_URL = os.getenv('LOGIN_URL', '/account/login/')
@@ -411,7 +411,7 @@ TEMPLATES = [
                 'account.context_processors.account',
                 'geonode.context_processors.resource_urls',
                 'geonode.geoserver.context_processors.geoserver_urls',
-                'usaid_nepal_geonode.context_processors.usaid_nepal_geonode',
+                'ftf_geonode.context_processors.ftf_geonode',
             ],
             'debug': DEBUG,
         },
@@ -556,7 +556,7 @@ GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY',"ABQIAAAAkofooZxTfcCv9Wi3zzGTVxTnme5
 #
 
 SITEURL = os.getenv('SITEURL',"http://localhost:8000/")
-SITENAME = 'usaid_nepal_geonode'
+SITENAME = 'ftf_geonode'
 
 USE_QUEUE = str2bool(os.getenv('USE_QUEUE', 'False'))
 
@@ -650,10 +650,10 @@ _DEFAULT_PYSCSW = {
         #    'federatedcatalogues': 'http://catalog.data.gov/csw'
         #},
         'metadata:main': {
-            'identification_title': 'usaid_nepal_geonode Catalogue',
+            'identification_title': 'ftf_geonode Catalogue',
             'identification_abstract': 'GeoNode is an open source platform that facilitates the creation, sharing, ' \
             'and collaborative use of geospatial data',
-            'identification_keywords': 'sdi,catalogue,discovery,metadata,GeoNode, usaid_nepal_geonode',
+            'identification_keywords': 'sdi,catalogue,discovery,metadata,GeoNode, ftf_geonode',
             'identification_keywords_type': 'theme',
             'identification_fees': 'None',
             'identification_accessconstraints': 'None',

@@ -9,8 +9,8 @@ class GeoNodeException(Exception):
 
 
 def get_version():
-    import usaid_nepal_geonode.version
-    return usaid_nepal_geonode.version.get_version(__version__)
+    import ftf_geonode.version
+    return ftf_geonode.version.get_version(__version__)
 
 
 def main(global_settings, **settings):
