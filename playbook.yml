@@ -4,12 +4,38 @@
   vars:
     app_name: ftf_geonode
     github_user: ftf-geonode
-    server_name: 0.0.0.0
+    server_name: ec2-54-186-157-155.us-west-2.compute.amazonaws.com
     deploy_user: ubuntu
     code_repository: "https://github.com/ftf-geonode/ftf_geonode.git"
     branch_name: master
     virtualenv_dir: "/home/ubuntu/.venvs"
-    site_url: "http://localhost:8000/"
+    site_url: "http://ec2-54-186-157-155.us-west-2.compute.amazonaws.com/"
     geoserver_url: "http://build.geonode.org/geoserver/latest/geoserver-2.9.x-oauth2.war"
+  gather_facts: False
+  pre_tasks:
+    - name: Install python for Ansible
+      become: yes
+      become_user: root
+      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+    - name: 'Reconfigue Locales'
+      become: yes
+      become_user: root
+      shell: "{{ item }}"
+      with_items:
+        - "export LANGUAGE=en_US.UTF-8"
+        - "export LANG=en_US.UTF-8"
+        - "export LC_ALL=en_US.UTF-8"
+        - "locale-gen --purge en_US.UTF-8"
+        - "echo 'LANG=en_US.UTF-8\nLANGUAGE=en_US:en\n' > /etc/default/locale"
+        #- "dpkg-reconfigure locales"
+    - name: "Install cul, vim, and unzip"
+      become: yes
+      become_user: root
+      apt: name="{{ item }}" state=latest
+      with_items:
+        - curl
+        - vim
+        - unzip
+    - setup: # aka gather_facts
   roles:
      - { role: GeoNode.geonode }

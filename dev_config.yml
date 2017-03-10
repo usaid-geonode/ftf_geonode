@@ -1,5 +1,6 @@
 ---
 GEOSERVER_URL: "http://build.geonode.org/geoserver/latest/geoserver-2.9.x-oauth2.war"
+#GEOSERVER_URL: "file:///vagrant/cache/geoserver-2.9.x-oauth2.war"
 DATA_DIR_URL: "http://build.geonode.org/geoserver/latest/data-2.9.x-oauth2.zip"
 JETTY_RUNNER_URL: "http://repo2.maven.org/maven2/org/mortbay/jetty/jetty-runner/8.1.8.v20121106/jetty-runner-8.1.8.v20121106.jar"
 WINDOWS:
