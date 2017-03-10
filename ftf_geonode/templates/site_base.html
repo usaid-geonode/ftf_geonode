@@ -29,7 +29,7 @@
         <a href="{% url "group_list" %}">{% trans "Groups" %}</a>
       </li>
       <li id="nav_help">
-        <a href="/help">Help</a>
+        <a href="./help">Help</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -58,7 +58,7 @@
           <li><a href="{% url "admin:index" %}">Admin</a></li>
           <li><a href="{{ GEOSERVER_BASE_URL }}">GeoServer</a></li>
           <li role="separator" class="divider"></li>
-          <li><a href="{% url "help" %}">{% trans "Help" %}</li>
+          <li><a href="./help">{% trans "Help" %}</li>
           <li role="separator" class="divider"></li>
           <li><a href="/account/logout/">Logout</a></li>
         </ul>

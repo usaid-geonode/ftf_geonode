@@ -1,5 +1,5 @@
 - name: Provision FTF GeoNode into Production
-  hosts: production
+  hosts: all
   remote_user: ubuntu
   vars:
     app_name: ftf_geonode
