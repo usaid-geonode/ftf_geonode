@@ -16,4 +16,12 @@ def ftf_geonode(request):
     if MOCK_FEATURED_DATASETS:
         defaults['MOCK_FEATURED_DATASETS'] = MOCK_FEATURED_DATASETS.get('datasets', [])
 
+
+    INDEX_TILES = None
+    with open("ftf_geonode/INDEX_TILES.yml", 'r') as f:
+        INDEX_TILES = yaml.load(f)
+
+    if INDEX_TILES:
+        defaults['INDEX_TILES'] = INDEX_TILES
+
     return defaults

@@ -9,11 +9,34 @@ This is where you can override the hero area block. You can simply modify the co
 <div class="jumbotron">
   <div class="container">
     <h1>{% trans "FTF GeoNode" %}</h1>
-    <p>{% blocktrans %}USAID Nepal, Feed the Future, and USAID Global Development Lab are cooperating on the <a href="http://datadrivenfarming.challenges.org/">Data Driven Farming Prize.{% endblocktrans %}</p>
+    <p>{% blocktrans %}<a href="http://datadrivenfarming.challenges.org/">The Data Driven Farming Prize</a> is seeking tools and approaches that source, analyze and translate data into actionable, timely and context-specific information for smallholder farmers to improve value from agricultural productivity.  The FTF GeoNode provides open data and APIs to support these efforts.{% endblocktrans %}</p>
     <span>{% trans 'Need help?' %} <a href="./help">{% trans 'Getting Started' %}</a></span>
   </div>
 </div>
 {% endblock %}
+
+
+{% block datasets %}
+  <section id="datasets">
+  	<div class="container">
+  		<div class="row">
+  			<div class="container text-center">
+  				<h1>Discover the available datasets.</h1>
+          {% for tile in INDEX_TILES %}
+  				<div class="col-xs-4 col-sm-2">
+  					<a data-toggle="tooltip" data-placement="auto" href="{{ tile.url }}" title="{{ tile.title }}">
+  						<div class="category">
+  							<i class="{{ tile.classes }}"></i>
+  							<h4>{{ tile.name }}</h4>
+  						</div>
+  					</a>
+  				</div>
+          {% endfor %}
+  			</div>
+  		</div>
+  	</div>
+  </section>
+  {% endblock %}
 
 {% block showcase %}
 <section id="showcase">

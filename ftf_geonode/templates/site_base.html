@@ -1,30 +1,133 @@
 {% extends "base.html" %}
 
 {% load i18n %}
+
 {% block extra_head %}
-      <link href="{{ STATIC_URL }}css/site_base.css" rel="stylesheet"/>      
-{% endblock %}
- {% block tabs %}
- <li id="nav_layers">
-   <a href="{% url "layer_browse" %}">{% trans "Layers" %}</a>
- </li>
- <li id="nav_maps">
-   <a href="{% url "maps_browse" %}">{% trans "Maps" %}</a>
- </li>
- <li id="nav_documents">
-   <a href="{% url "document_browse" %}">{% trans "Documents" %}</a>
- </li>
-<li id="nav_people">
-	<a href="{% url "profile_browse" %}">{% trans "People" %}</a>
-</li>
-<li id="nav_groups">
-	<a href="{% url "group_list" %}">{% trans "Groups" %}</a>
-</li>
-<li id="nav_help">
-	<a href="/help">Help</a>
-</li>
+<link href="https://fonts.googleapis.com/css?family=Montserrat|Noto+Sans|Source+Sans+Pro" rel="stylesheet">
+<link href="{{ STATIC_URL }}css/site_base.css" rel="stylesheet"/>
+<script src="{{ STATIC_URL }}js/site_base.js"></script>
 {% endblock %}
 
-{% block extra_footer %}
-	<script src="{{ STATIC_URL }}js/site_base.js"></script>
-{% endblock %}
+{% block header %}
+<nav id="ftf_geonode_navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+      <i class="fa fa-navicon fa-lg"></i>
+    </button>
+    <a class="navbar-brand" href="{% url "home" %}">GeoNode</a>
+  </div>
+  <div id="navbar" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav toolbar">
+      <li id="nav_layers">
+        <a href="{% url "layer_browse" %}">{% trans "Datasets" %}</a>
+      </li>
+      <!--<li id="nav_maps">
+        <a href="{% url "maps_browse" %}">{% trans "Maps" %}</a>
+      </li>
+      <li id="nav_documents">
+        <a href="{% url "document_browse" %}">{% trans "Documents" %}</a>
+      </li>-->
+      <li id="nav_people">
+        <a href="{% url "profile_browse" %}">{% trans "People" %}</a>
+      </li>
+      <li id="nav_groups">
+        <a href="{% url "group_list" %}">{% trans "Groups" %}</a>
+      </li>-->
+      <li id="nav_help">
+        <a href="/help">Help</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="search">
+            <form id="search" action="{% url "search" %}" >
+              <span class="fa fa-search"></span>
+              {% if HAYSTACK_SEARCH %}
+              <input id="search_input" type="text" placeholder="Search" name="q">
+              {% else %}
+              <input id="search_input" type="text" placeholder="Search" name="title__icontains">
+              {% endif %}
+            </form>
+          </div>
+      </li>
+        {% if not user.is_authenticated and REGISTRATION_OPEN %}
+        <li><a href="{% url "account_signup" %}">{% trans "Register" %}</a></li>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <li><a href="#" class="dropdown-toggle avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% avatar user 42 %} {{ user.username }}<i class="fa fa-angle-down fa-lg"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ user.get_absolute_url }}">{% trans "Profile" %}</a></li>
+            <li><a href="{% url "recent-activity" %}">{% trans "Recent Activity" %}</a></li>
+            <li><a href="{% url "messages_inbox" %}">{% trans "Inbox" %}</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{% url "admin:index" %}">Admin</a></li>
+            <li><a href="{{ GEOSERVER_BASE_URL }}">GeoServer</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{% url "help" %}">{% trans "Help" %}</li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/account/logout/">Logout</a></li>
+            </ul>
+          </li>
+      {% else %}
+      <li><a href="#" data-toggle="modal" data-target="#SigninModal" role="button" >{% trans "Sign in" %} </a></li>
+          {% endif %}
+        </ul>
+      </div> <!--/.nav-collapse -->
+    </div>
+  </nav>
+{% endblock header %}
+
+{% block footer %}
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{{ STATIC_URL }}img/logo/ftf_logo_white.png" />
+      </div>
+      <div class="col-md-1">
+        <ul class="list-unstyled">
+          <li>Data</li>
+          <li><a href="{% url "layer_browse" %}">{% trans "Datasets" %}</a></li>
+          <li><a href="{% url "document_browse" %}">{% trans "APIs" %}</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url "layer_upload" %}">Upload Data</a></li>
+          {% endif %}
+        </ul>
+      </div>
+      <div class="col-md-2">
+        <ul class="list-unstyled">
+          <li>About</li>
+          <li><a href="{% url "profile_browse" %}">{% trans "People" %}</a></li>
+          <li><a href="{% url "group_list" %}">{% trans "Groups" %}</a></li>
+          {% if user.is_superuser %}
+          <li><a href="/admin/people/profile/add/">{% trans "Add User" %}</a></li>
+          <li><a href="{% url "account_invite_user" %}">{% trans "Invite User" %}</a></li>
+          <li><a href="{% url "group_create" %}">{% trans "Create Group" %}</a></li>
+          {% endif %}
+        </ul>
+      </div>
+      <div class="col-md-3 text-right">
+        <ul class="list-unstyled">
+          <li>{% trans "Powered by" %} <a href="http://geonode.org">{% trans "GeoNode" %}</a> <em>{% trans "version" %} {{ VERSION }}</em></li>
+          <li><a href="{% url "developer" %}">{% trans "Developers" %}</a> | <a href="{% url "about" %}">{% trans "About" %}</a><li>
+        </ul>
+        <label class="hidden">{% trans "Language" %}</label>
+        {% if csrf_token != "NOTPROVIDED" %}
+        {% get_current_language as LANGUAGE %}
+        <form class="form-inline" action="/i18n/setlang/" method="post">
+        {% csrf_token %}
+          <select class="col-md-6 pull-right" name="language" onchange="javascript:form.submit()">
+            {% for lang in LANGUAGES %}
+            <option value="{{ lang.0 }}" {% ifequal LANGUAGE_CODE lang.0 %} selected="selected"{% endifequal %}>
+              {{ lang.1 }}
+            </option>
+            {% endfor %}
+          </select>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+{% endblock footer %}

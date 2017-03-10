@@ -63,3 +63,5 @@ uploaded/
 ftf_geonode.egg-info
 development.db
 development.db-journal
+ec2.yml
+inventory

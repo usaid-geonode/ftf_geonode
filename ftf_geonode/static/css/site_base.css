@@ -5,5 +5,12 @@
 }
 
 .home .jumbotron {
-	background: url(../img/background.jpg) no-repeat;
+	background: url(../img/background/jumbotron_background.jpg) no-repeat;
+}
+
+
+#ftf_geonode_navbar {
+  background-image: url(../img/background/ftf_geonode.png);
+  background-repeat: repeat;
+  padding: 2px 0px;
 }
