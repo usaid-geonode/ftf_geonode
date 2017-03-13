@@ -1,0 +1,60 @@
+---
+
+title: FTF GeoNode
+view:
+  baselayer: osm
+  featurelayers:
+    - nepal_ftf_zoi
+  latitude: 28.183
+  longitude: 84.853
+  maxZoom: 18
+  minZoom: 0
+  zoom: 6
+  controls: []
+controls:
+  attribution: false
+  legend: false
+  zoom: false
+renderlayers:
+  - nepal_ftf_zoi
+  - osm
+baselayers:
+  - id: osm
+    title: OpenStreetMap
+    description: OpenStreetMap Basemap, Standard Style
+    type: tiles
+    source:
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      name: OpenStreetMap
+    tile:
+      url: https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png
+featurelayers:
+  - id: nepal_ftf_zoi
+    type: GeoJSON
+    title: Nepal Feed the Future Zones of Interest
+    description: Nepal Feed the Future Zones of Interest
+    source:
+      name: "FTF"
+      attribution: "FTF GeoNode"
+      site: "FTF GeoNode"
+    wms:
+      version: "1.1.1"
+      layers: ["geonode:nepal_ftf_zoi"]
+      styles: []
+      format: 'image/png'
+      transparent: true
+      buffer: 256
+      url: "http://localhost:8000/geoserver/geonode/wms"
+    wfs:
+      version: "1.0.0"  # Needs to 1.0.0 or returns bad results for some reason.
+      url: "http://localhost:8000/geoserver/wfs"
+      geometry: shape
+    popup:
+      - title: "FTF Zone: {{ feature.attributes.NAME_0 }}"
+        panes:
+          - id: popup_overview
+            tab: {label: Overview }
+            fields:
+              - { "attribute": "NAME_0", "label": "Name_0", "value": "{{ feature.attributes.NAME_0 }}" }
+              - { "attribute": NAME_1, "label": "NAME_1", "value": "{{ feature.attributes.NAME_1 }}" }
+              - { "attribute": NAME_2, "label": "NAME_2", "value": "{{ feature.attributes.NAME_2 }}" }

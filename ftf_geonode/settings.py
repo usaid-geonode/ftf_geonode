@@ -948,7 +948,7 @@ CACHES = {
     #     }
 }
 
-LAYER_PREVIEW_LIBRARY = 'react'  #geoext
+LAYER_PREVIEW_LIBRARY = 'geoext'  #react
 
 SERVICE_UPDATE_INTERVAL = 0
 
@@ -1075,14 +1075,13 @@ if 'geonode.geoserver' in INSTALLED_APPS:
     }
     ABSOLUTE_URL_OVERRIDES = os.getenv('ABSOLUTE_URL_OVERRIDES',_DEFAULT_ABSOLUTE_URL_OVERRIDES)
     AUTH_PROFILE_MODULE = os.getenv('AUTH_PROFILE_MODULE','maps.Contact')
-    REGISTRATION_OPEN =  str2bool(os.getenv('REGISTRATION_OPEN', 'True'))
 
     ACCOUNT_ACTIVATION_DAYS = int(os.getenv('ACCOUNT_ACTIVATION_DAYS','7'))
 
     # TODO: Allow overriding with an env var
     DB_DATASTORE = str2bool(os.getenv('DB_DATASTORE', 'True'))
 
-    ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', ['localhost', ])
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', '127.0.0.1:8001']
 
 
 # Keywords thesauri
@@ -1090,6 +1089,11 @@ if 'geonode.geoserver' in INSTALLED_APPS:
 # Required: (boolean, optional, default false) mandatory while editing metadata (not implemented yet)
 # Filter: (boolean, optional, default false) a filter option on that thesaurus will appear in the main search page
 THESAURI = []
+
+# FTF GeoNode Settings
+
+MEMCACHED_HOST = "localhost"
+MEMCACHED_PORT = 11212
 
 try:
     from local_settings import *  # noqa

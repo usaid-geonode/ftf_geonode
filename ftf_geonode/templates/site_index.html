@@ -6,12 +6,12 @@ This is where you can override the hero area block. You can simply modify the co
 {% endcomment %}
 
 {% block hero %}
-<div class="jumbotron">
+<div class="jumbotron" style="position:relative;">
   <div class="container">
-    <h1 style="font-family: 'Montserrat', sans-serif;"><span style="letter-spacing:-6px;">FTF</span><span style="margin-left: 4rem; letter-spacing: 0.2rem;">GeoNode</span></h1>
-    <p>{% blocktrans %}<a href="http://datadrivenfarming.challenges.org/">The Data Driven Farming Prize</a> is seeking tools and approaches that source, analyze and translate data into actionable, timely and context-specific information for smallholder farmers to improve value from agricultural productivity.  The FTF GeoNode provides open data and APIs to support these efforts.{% endblocktrans %}</p>
-    <span>{% trans 'Need help?' %} <a href="./help">{% trans 'Getting Started' %}</a></span>
+    <h2 style="font-family: 'Montserrat', sans-serif;color:white;"><span style="letter-spacing: 0.2rem;">Data Driven Farming GeoNode</span></h2>
+    <p>{% blocktrans %}<a href="http://datadrivenfarming.challenges.org/">The Data Driven Farming Prize</a> is seeking tools and approaches that source, analyze and translate data into actionable, timely and context-specific information for smallholder farmers to improve value from agricultural productivity.  This GeoNode provides open data and APIs to support these efforts.{% endblocktrans %}</p>
   </div>
+  <div style="position:absolute; right: 2rem; bottom: 1rem;font-size: 12px;"><span>Background Image from </span><a href="https://www.ars.usda.gov/oc/images/photos/apr01/k9388-14/" target="_blank">https://www.ars.usda.gov/oc/images/photos/apr01/k9388-14/</a></div>
 </div>
 {% endblock %}
 
@@ -42,19 +42,25 @@ This is where you can override the hero area block. You can simply modify the co
 <section id="showcase">
   <div class="container">
     <div class="row">
-      <h2>Featured Datasets</h2>
-      <div>
-        {% for x in MOCK_FEATURED_DATASETS %}
-        <div>
-          <div class="col-md-3">
-            <a href="{{ x.url }}"><img src="{{ x.thumbnail }}" /></a>
-            <h4>{{ x.title }}</h4>
-          </div>
-        </div>
-        {% endfor %}
+      <div class="col-md-4">
+        <h3>Baseline Data</h3>
+        <iframe
+            src="{% url "viewer" %}?main:config={{ STATIC_URL }}dashboards/baseline.yml"
+            style="width:100%; height: 300px;" frameborder=0></iframe>
+      </div>
+      <div class="col-md-4">
+        <h3>Operational Data</h3>
+        <iframe
+            src="{% url "viewer" %}?main:config={{ STATIC_URL }}dashboards/operational.yml"
+            style="width:100%; height: 300px;" frameborder=0></iframe>
+      </div>
+      <div class="col-md-4">
+        <h3>Thematic Data</h3>
+        <iframe
+            src="{% url "viewer" %}?main:config={{ STATIC_URL }}dashboards/thematic.yml"
+            style="width:100%; height: 300px;" frameborder=0></iframe>
       </div>
     </div>
-    <p><a href="/search/">Explore all datasets</a></p>
   </div>
 </section>
 {% endblock %}

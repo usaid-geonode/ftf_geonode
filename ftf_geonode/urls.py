@@ -51,6 +51,8 @@ sitemaps = {
 urlpatterns = patterns('',
 
                        # FTF Pages
+                       url(r'^viewer/?$', TemplateView.as_view(template_name='viewer.html'), name='viewer'),
+                       url(r'^apis/?$', TemplateView.as_view(template_name='apis.html'), name='apis'),
 
                        # Static pages
                        url(r'^/?$', TemplateView.as_view(template_name='site_index.html'), name='home'),

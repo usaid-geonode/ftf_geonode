@@ -5,3 +5,7 @@ django-admin.py startproject --template=https://github.com/GeoNode/geonode-proje
 
 
 ANSIBLE_ROLES_PATH=~/.ansible/roles ansible-playbook -i inventory --limit all playbook.yml
+
+
+make all NAME=nepal URL=http://download.geofabrik.de/asia/nepal-latest.osm.pbf
+CREATE DATABASE osm_nepal WITH TEMPLATE template1 OWNER ftf_geonode;

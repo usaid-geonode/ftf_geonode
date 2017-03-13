@@ -1,7 +1,16 @@
 .navbar-brand {
     height: 72px;
-    background: url(../img/ftf_geonode_logo.png) no-repeat;
+    background: none;
+    /*background: url(../img/ftf_geonode_logo.png) no-repeat;*/
     background-position: center;
+}
+
+.navbar-brand div {
+  color: rgb(103, 155, 145) !important;
+}
+
+.navbar-brand div:hover {
+  color: rgb(103, 155, 145) !important;
 }
 
 .home .jumbotron {
@@ -11,9 +20,65 @@
   padding: 7.5em 0 3.75em;
 }
 
+.home .big-search {
+  background: rgb(241, 241, 241)!important;
+}
+
+h1, h2, h3 {
+  color: rgb(97, 153, 142);
+}
+
+a {
+  color: rgb(97, 153, 142) !important;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 
 #ftf_geonode_navbar {
-  background-image: url(../img/background/ftf_background.png);
+  /*background-image: url(../img/background/ftf_background.png);*/
+  background: white;
   background-repeat: repeat;
   padding: 2px 0px;
+  border-bottom: 2px solid rgb(97, 153, 142);
+}
+
+#ftf_geonode_navbar ul li a {
+  color: rgb(80, 87, 89);
+  font-weight: 600;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+#ftf_geonode_navbar #navbar ul li:hover a, #ftf_geonode_navbar ul li:focus a, #ftf_geonode_navbar ul li:selected a {
+  color: rgb(208, 15, 66) !important;
+}
+
+#datasets category:hover i, #datasets category:hover h4 {
+  color: rgb(208, 15, 66) !important;
+}
+
+
+#ftf_geonode_navbar .navbar-nav .dropdown-menu {
+    background-color: white;
+    border-top: 1px solid rgb(97, 153, 142);
+}
+
+#ftf_geonode_navbar .navbar-nav ul.dropdown-menu li a {
+  color: rgb(80, 87, 89);
+  font-weight: normal;
+  padding: 3px 20px;
+}
+
+
+#ftf_geonode_navbar .navbar-nav .dropdown-menu li a:hover {
+    background-color: white;
+    border: 0;
+}
+
+#ftf_geonode_navbar .navbar-nav .dropdown-menu li a:hover {
+    background-color: rgb(238, 238, 238);
+    color: rgb(208, 15, 66);
 }

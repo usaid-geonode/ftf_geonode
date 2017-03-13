@@ -1,0 +1,158 @@
+---
+
+title: FTF GeoNode
+view:
+  baselayer: osm
+  featurelayers:
+    - train_stations_shp
+    - wld_poi_warehouses_wfp
+  latitude: 28.183
+  longitude: 84.853
+  maxZoom: 18
+  minZoom: 0
+  zoom: 6
+  controls: []
+controls:
+  attribution: false
+  legend: false
+  zoom: false
+renderlayers:
+  - train_stations_shp
+  - wld_poi_warehouses_wfp
+  - osm
+baselayers:
+  - id: osm
+    title: OpenStreetMap
+    description: OpenStreetMap Basemap, Standard Style
+    type: tiles
+    source:
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      name: OpenStreetMap
+    tile:
+      url: https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png
+featurelayers:
+  - id: wld_poi_warehouses_wfp
+    type: WMS
+    title: Nepal Feed the Future Zones of Interest
+    description: Nepal Feed the Future Zones of Interest
+    source:
+      name: "WFP"
+      attribution: "WFP GeoNode"
+      site: "WFP GeoNode"
+    wms:
+      version: "1.1.1"
+      layers: ["geonode:wld_poi_warehouses_wfp"]
+      styles: []
+      format: 'image/png'
+      transparent: true
+      buffer: 256
+      url: "http://geonode.wfp.org/cors/geoserver/geonode/wms"
+    wfs:
+      version: "1.0.0"  # Needs to 1.0.0 or returns bad results for some reason.
+      url: "http://geonode.wfp.org/cors/geoserver/wfs"
+      geometry: shape
+  - id: train_stations_shp
+    type: GeoJSON
+    title: Nepal Train Stations
+    description: Nepal Train Stations
+    source:
+      name: "FTF"
+      attribution: "FTF GeoNode"
+      site: "FTF GeoNode"
+    geojson:
+      url: "/geoserver/wfs?srsName=EPSG%3A4326&typename=geonode%3Atrain_stations_shp&outputFormat=json&version=1.0.0&service=WFS&request=GetFeature&access_token=HLanY1cyvsgx7zE2Qct6YCch3IWLAA"
+    carto:
+      styles:
+        - id: default
+          title: Default Style
+          description: Default Style
+          symbolizers:
+            - id: icon
+              title: Icon Symbolizer
+              description: Icon Symbolizer
+              type: point
+              static:
+                properties:
+                  fillColor: '#0000AA'
+                  fillOpacity: 0.6
+                  radius: 18
+                  strokeColor: '#0000DD'
+                  strokeWidth: 1.0
+                  textAlign: center
+                  textBaseline: middle
+                  textCode: f238
+                  textColor: white
+                  textFont: normal 20px FontAwesome
+    popup:
+      - title: "Train Station"
+        panes: []
+  - id: cities_shp
+    type: GeoJSON
+    title: Nepal Cities
+    description: Nepal Cities
+    source:
+      name: "FTF"
+      attribution: "FTF GeoNode"
+      site: "FTF GeoNode"
+    geojson:
+      url: "/geoserver/wfs?srsName=EPSG%3A4326&typename=geonode%3Acities_shp&outputFormat=json&version=1.0.0&service=WFS&request=GetFeature"
+    carto:
+      styles:
+        - id: default
+          title: Default Style
+          description: Default Style
+          symbolizers:
+            - id: icon
+              title: Icon Symbolizer
+              description: Icon Symbolizer
+              type: point
+              static:
+                properties:
+                  fillColor: '#0000AA'
+                  fillOpacity: 0.6
+                  radius: 18
+                  strokeColor: '#0000DD'
+                  strokeWidth: 1.0
+                  textAlign: center
+                  textBaseline: middle
+                  textCode: f096
+                  textColor: white
+                  textFont: normal 20px FontAwesome
+    popup:
+      - title: "Train Station"
+        panes: []
+  - id: banks_shp
+    type: GeoJSON
+    title: Nepal Banks
+    description: Nepal Banks
+    source:
+      name: "FTF"
+      attribution: "FTF GeoNode"
+      site: "FTF GeoNode"
+    geojson:
+      url: "/geoserver/wfs?srsName=EPSG%3A4326&typename=geonode%3Abanks_shp&outputFormat=json&version=1.0.0&service=WFS&request=GetFeature"
+    carto:
+      styles:
+        - id: default
+          title: Default Style
+          description: Default Style
+          symbolizers:
+            - id: icon
+              title: Icon Symbolizer
+              description: Icon Symbolizer
+              type: point
+              static:
+                properties:
+                  fillColor: '#0000AA'
+                  fillOpacity: 0.6
+                  radius: 18
+                  strokeColor: '#0000DD'
+                  strokeWidth: 1.0
+                  textAlign: center
+                  textBaseline: middle
+                  textCode: f155
+                  textColor: white
+                  textFont: normal 20px FontAwesome
+    popup:
+      - title: "Bank"
+        panes: []
