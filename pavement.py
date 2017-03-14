@@ -226,6 +226,7 @@ def sync(options):
     sh("python manage.py loaddata fixtures/sample_admin.json")
     sh("python manage.py loaddata fixtures/default_oauth_apps.json")
     sh("python manage.py loaddata fixtures/initial_data.json")
+    sh("python manage.py loaddata fixtures/regions.json")
 
 
 @task
