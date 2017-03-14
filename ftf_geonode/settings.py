@@ -1095,6 +1095,8 @@ THESAURI = []
 MEMCACHED_HOST = "localhost"
 MEMCACHED_PORT = 11212
 
+TEMPLATE_LAYER_MODAL_DOWNLOAD_LINKS = "layer_modal_download_links.yml"
+
 try:
     from local_settings import *  # noqa
 except ImportError:
