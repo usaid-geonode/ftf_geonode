@@ -4,12 +4,12 @@
   vars:
     app_name: ftf_geonode
     github_user: ftf-geonode
-    server_name: ec2-54-186-157-155.us-west-2.compute.amazonaws.com
+    server_name: ec2-34-205-161-42.compute-1.amazonaws.com
     deploy_user: ubuntu
     code_repository: "https://github.com/ftf-geonode/ftf_geonode.git"
     branch_name: master
     virtualenv_dir: "/home/ubuntu/.venvs"
-    site_url: "http://ec2-54-186-157-155.us-west-2.compute.amazonaws.com/"
+    site_url: "http://ec2-34-205-161-42.compute-1.amazonaws.com/"
     geoserver_url: "http://build.geonode.org/geoserver/latest/geoserver-2.9.x-oauth2.war"
   gather_facts: False
   pre_tasks:
