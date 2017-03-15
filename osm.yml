@@ -1,0 +1,50 @@
+---
+layers:
+  - id: aerodromes_point
+    geometry_type: POINT
+    keep:
+      - aeroway=aerodrome
+    category: transportation
+    keywords:
+      - osm
+      - airports
+      - aerodromes
+  - id: all_places
+    geometry_type: POINT
+    keep:
+      - place=city
+      - place=borough
+      - place=suburb
+      - place=quarter
+      - place=neighbourhood
+      - place=city_block
+      - place=plot
+      - place=town
+      - place=village
+      - place=hamlet
+      - place=isolated_dwelling
+      - place=farm
+      - place=allotments
+    category: location
+    keywords:
+      - osm
+      - places
+  - id: all_roads
+    geometry_type: LINE
+    keep:
+      - highway=*
+    category: transportation
+    keywords:
+      - osm
+      - roads
+      - transit
+  - id: banks
+    geometry_type: POINT
+    keep:
+      - amenity=bank
+      - amenity=atm
+      - amenity=bureau_de_change
+    category: society
+    keywords:
+      - osm
+      - banks

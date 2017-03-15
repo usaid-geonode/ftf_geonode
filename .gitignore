@@ -65,3 +65,5 @@ development.db
 development.db-journal
 ec2.yml
 inventory
+temp
+osmfilter_tempfile.*

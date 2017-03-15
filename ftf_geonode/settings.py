@@ -275,7 +275,7 @@ GEONODE_CONTRIB_APPS = (
 # Uncomment the following line to enable contrib apps
 # GEONODE_APPS = GEONODE_APPS + GEONODE_CONTRIB_APPS
 
-_DEFAULT_INSTALLED_APPS = (
+INSTALLED_APPS = (
 
     'modeltranslation',
 
@@ -331,11 +331,9 @@ _DEFAULT_INSTALLED_APPS = (
     'polymorphic',
     'guardian',
     'oauth2_provider',
+    'floppyforms',
 
 ) + GEONODE_APPS
-
-INSTALLED_APPS = os.getenv('INSTALLED_APPS',_DEFAULT_INSTALLED_APPS)
-
 
 _DEFAULT_LOGGING = {
     'version': 1,
