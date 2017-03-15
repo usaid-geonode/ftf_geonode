@@ -18,7 +18,7 @@ from geonode.layers.management.commands import importlayers
 
 geometry_type_to_path = {
     "POINT": "points",
-    "LINE": "multilinestrings"
+    "LINE": "lines"
 }
 
 geometry_type_to_shpt = {
@@ -79,6 +79,10 @@ def run(args):
     basepath = os.path.split(basepath)[1]
     path_osm = os.path.join(temp, basepath + ".osm")
     #==#
+    if os.path.isfile(path_pbf) == False:
+        print "Error: Could not find PBF file"
+        sys.exit(1)
+    #==#
     if not os.path.isdir(temp):
         os.makedirs(temp)
     #==#
@@ -86,11 +90,10 @@ def run(args):
         print "####################"
         print "Importing layer", layer["id"]
         layerId = layer["id"]
-        if layerId != "all_roads":
-            continue
         keep = layer["keep"]
         if not isinstance(keep, basestring):
             keep = " ".join(keep)
+        keep = keep.replace("*", "")
         geometry_type = layer.get("geometry_type", "MULTIPOINT")
         category = layer.get("category", None)
         regions = args.regions or layer.get("regions", None)
@@ -132,12 +135,17 @@ def run(args):
                     print check_output(shlex.split("osmfilter "+path_osm_filtered_nodes+" --keep='"+keep+"' -o="+path_osm_cleaned))
             else:
                 if os.path.isfile(path_osm_cleaned) == False:
+                    #print "osmfilter "+path_osm+" --keep='"+keep+"' --drop-author --drop-version --drop-relations -o="+path_osm_cleaned
+                    #continue
                     print check_output(shlex.split("osmfilter "+path_osm+" --keep='"+keep+"' --drop-author --drop-relations -o="+path_osm_cleaned))
 
-            if geometry_type == "POINT":
-                print check_output(shlex.split("ogr2ogr -f \"ESRI Shapefile\" "+path_shp+" "+path_osm_cleaned+" -lco ENCODING=UTF-8 -lco SHPT="+geometry_type_to_shpt[geometry_type]+" -skipfailures --config OSM_CONFIG_FILE "+path_osm_config+" --config OSM_USE_CUSTOM_INDEXING NO"))
-            else:
-                print check_output(shlex.split("ogr2ogr -f \"ESRI Shapefile\" "+path_shp+" "+path_osm_cleaned+" -lco ENCODING=UTF-8 -skipfailures --config OSM_CONFIG_FILE "+path_osm_config+" --config OSM_USE_CUSTOM_INDEXING NO"))
+            print check_output(shlex.split("ogr2ogr -f \"ESRI Shapefile\" "+path_shp+" "+path_osm_cleaned+" -lco ENCODING=UTF-8 -skipfailures --config OSM_CONFIG_FILE "+path_osm_config+" --config OSM_USE_CUSTOM_INDEXING NO --config CPL_TMPDIR /tmp"))
+            #if geometry_type == "POINT":
+            #    print check_output(shlex.split("ogr2ogr -f \"ESRI Shapefile\" "+path_shp+" "+path_osm_cleaned+" -lco ENCODING=UTF-8 -lco SHPT="+geometry_type_to_shpt[geometry_type]+" -skipfailures --config OSM_CONFIG_FILE "+path_osm_config+" --config OSM_USE_CUSTOM_INDEXING NO --config CPL_TMPDIR /tmp"))
+            #else:
+            #    print "ogr2ogr -f \"ESRI Shapefile\" "+path_shp+" "+path_osm_cleaned+" -lco ENCODING=UTF-8 -lco SHPT="+geometry_type_to_shpt[geometry_type]+" -skipfailures --config OSM_CONFIG_FILE "+path_osm_config+" --config OSM_USE_CUSTOM_INDEXING NO"
+            #    continue
+            #    print check_output(shlex.split("ogr2ogr -f \"ESRI Shapefile\" "+path_shp+" "+path_osm_cleaned+" -lco ENCODING=UTF-8 -lco SHPT="+geometry_type_to_shpt[geometry_type]+" -skipfailures --config OSM_CONFIG_FILE "+path_osm_config+" --config OSM_USE_CUSTOM_INDEXING NO"))
 
         call_command(
             'importlayers',
