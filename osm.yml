@@ -1,4 +1,17 @@
 ---
+caches:
+  - id: "amenity"
+    keep:
+      - amenity=*
+  - id: "highway"
+    keep:
+      - highway=*
+  - id: "place"
+    keep:
+      - place=*
+  - id: "landuse"
+    keep:
+      - landuse=*
 layers:
   - id: aerodromes_point
     geometry_type: POINT
@@ -9,7 +22,17 @@ layers:
       - osm
       - airports
       - aerodromes
+  - id: aerodromes_polygon
+    geometry_type: POLYGON
+    keep:
+      - aeroway=aerodrome
+    category: transportation
+    keywords:
+      - osm
+      - airports
+      - aerodromes
   - id: all_places
+    cache: place
     geometry_type: POINT
     keep:
       - place=city
@@ -29,6 +52,7 @@ layers:
     keywords:
       - osm
       - places
+      - placenames
   - id: all_roads
     geometry_type: LINE
     keep:
@@ -39,6 +63,7 @@ layers:
       - roads
       - transit
   - id: banks
+    cache: amenity
     geometry_type: POINT
     keep:
       - amenity=bank
@@ -48,3 +73,316 @@ layers:
     keywords:
       - osm
       - banks
+  #- id: buildings
+  #  geometry_type: POLYGON
+  #  keep:
+  #    - building=*
+  #  category: society
+  #  keywords:
+  #    - osm
+  #    - buildings
+  - id: built_up_areas
+    cache: landuse
+    geometry_type: POLYGON
+    keep:
+      - landuse=residential
+      - landuse=allotments
+      - landuse=cemetery
+      - landuse=construction
+      - landuse=depot
+      - landuse=garages
+      - landuse=brownfield
+      - landuse=commercial
+      - landuse=industrial
+      - landuse=retail
+    category: society
+    keywords:
+      - osm
+      - landuse
+      - built_up_areas
+  - id: cities
+    geometry_type: POINT
+    keep:
+      - place=city
+    category: location
+    keywords:
+      - osm
+      - places
+      - cities
+  - id: farms
+    cache: landuse
+    geometry_type: POLYGON
+    keep:
+      - landuse=farm
+      - landuse=farmland
+      - landuse=farmyard
+      - landuse=livestock
+    category: society
+    keywords:
+      - osm
+      - landuse
+      - farms
+      - farmland
+  - id: forest
+    geometry_type: POLYGON
+    keep:
+      - landuse=forest
+      - natural=wood
+    category: society
+    keywords:
+      - osm
+      - forest
+      - landcover
+  - id: grassland
+    geometry_type: POLYGON
+    keep:
+      - landuse=grass
+      - landuse=meadow
+      - landuse=scrub
+      - landuse=village_green
+      - natural=scrub
+      - natural=heath
+      - natural=grassland
+    category: society
+    keywords:
+      - osm
+      - grassland
+      - landcover
+  - id: helipads
+    geometry_type: POINT
+    keep:
+      - aeroway=helipad
+      - aeroway=heliport
+    category: transportation
+    keywords:
+      - osm
+      - helicopter
+      - heliapad
+      - heliport
+      - transit
+  - id: hotels
+    geometry_type: POINT
+    keep:
+      - tourism=hotel
+      - tourism=hostel
+      - tourism=motel
+      - tourism=guest_house
+    category: society
+    keywords:
+      - osm
+      - tourism
+      - hotels
+  - id: inland_water_line
+    geometry_type: LINE
+    keep:
+      - waterway=*
+    category: society
+    keywords:
+      - osm
+      - hydrology
+      - hydro
+      - water
+  - id: inland_water_polygon
+    geometry_type: POLYGON
+    keep:
+      - natural=water
+      - natural=wetland
+      - natural=bay
+      - landuse=reservoir
+      - landuse=basin
+      - landuse=salt_pond
+      - waterway=river
+      - waterway=riverbank
+    category: society
+    keywords:
+      - osm
+      - hydrology
+      - hydro
+      - water
+  - id: main_roads
+    cache: highway
+    geometry_type: LINE
+    keep:
+      - highway=motorway
+      - highway=trunk
+      - highway=primary
+    category: transportation
+    keywords:
+      - osm
+      - roads
+      - transit
+  - id: medical_point
+    cache: amenity
+    geometry_type: POINT
+    keep:
+      - amenity=baby_hatch
+      - amenity=clinic
+      - amenity=dentist
+      - amenity=doctors
+      - amenity=hospital
+      - amenity=nursing_home
+      - amenity=pharmacy
+      - amenity=social_facility
+      - amenity=veterinary
+      - amenity=blood_donation
+    category: society
+    keywords:
+      - osm
+      - health
+      - medical
+      - hospital
+  - id: medical_polygon
+    cache: amenity
+    geometry_type: POLYGON
+    keep:
+      - amenity=baby_hatch
+      - amenity=clinic
+      - amenity=dentist
+      - amenity=doctors
+      - amenity=hospital
+      - amenity=nursing_home
+      - amenity=pharmacy
+      - amenity=social_facility
+      - amenity=veterinary
+      - amenity=blood_donation
+    category: society
+    keywords:
+      - osm
+      - health
+      - medical
+      - hospital
+  - id: paths
+    geometry_type: LINE
+    keep:
+      - highway=footway
+      - highway=bridleway
+      - highway=steps
+      - highway=path
+    category: society
+    keywords:
+      - osm
+      - transit
+      - paths
+  - id: police_stations
+    geometry_type: POINT
+    keep:
+      - amenity=police
+    category: society
+    keywords:
+      - osm
+      - police
+  - id: railways
+    geometry_type: LINE
+    keep:
+      - railway=*
+    category: transportation
+    keywords:
+      - osm
+      - railway
+      - railroad
+  #- id: school_point
+  #  cache: amenity
+  #  geometry_type: POINT
+  #  keep:
+  #    - amenity=school
+  #    - amenity=university
+  #    - amenity=college
+  #    - amenity=kindergarten
+  #    - amenity=library
+  #    - amenity=public_bookcase
+  #    - amenity=music_school
+  #    - amenity=driving_school
+  #    - amenity=language_school
+  #  category: society
+  #  keywords:
+  #    - osm
+  #    - schools
+  #    - education
+  #- id: school_polygon
+  #  cache: amenity
+  #  geometry_type: POLYGON
+  #  keep:
+  #    - amenity=school
+  #    - amenity=university
+  #    - amenity=college
+  #    - amenity=kindergarten
+  #    - amenity=library
+  #    - amenity=public_bookcase
+  #    - amenity=music_school
+  #    - amenity=driving_school
+  #    - amenity=language_school
+  #  category: society
+  #  keywords:
+  #    - osm
+  #    - schools
+  #    - education
+  - id: towns
+    geometry_type: POINT
+    keep:
+      - place=town
+    category: location
+    keywords:
+      - osm
+      - places
+      - placenames
+  - id: tracks
+    geometry_type: LINE
+    keep:
+      - place=town
+    category: transportation
+    keywords:
+      - highway=track
+  - id: transport_point
+    geometry_type: POINT
+    keep:
+      - amenity=bicycle_parking
+      - amenity=bicycle_repair_station
+      - amenity=bicycle_rental
+      - amenity=boat_sharing
+      - amenity=bus_station
+      - amenity=car_rental
+      - amenity=car_sharing
+      - amenity=car_wash
+      - amenity=charging_station
+      - amenity=ferry_terminal
+      - amenity=fuel
+      - amenity=grit_brin
+      - amenity=motorcycle_parking
+      - amenity=parking
+      - amenity=parking_entrance
+      - amenity=parking_space
+      - amenity=taxi
+      - public_transport=*
+      - railway=halt
+      - railway=station
+      - railway=subway_entrance
+      - railway=tram_stop
+      - waterway=dock
+      - waterway=boatyard
+    category: transportation
+    keywords:
+      - osm
+      - transit
+  - id: utilities
+    cache: amenity
+    geometry_type: POINT
+    keep:
+      - amenity=shower
+      - amenity=toilets
+      - amenity=water_point
+      - amenity=drinking_water
+      - amenity=water_in_place
+    category: society
+    keywords:
+      - osm
+      - utilities
+      - water
+  - id: villages
+    geometry_type: POINT
+    keep:
+      - place=village
+    category: location
+    keywords:
+      - osm
+      - places
+      - placenames

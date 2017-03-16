@@ -4,7 +4,7 @@ title: FTF GeoNode
 view:
   baselayer: osm
   featurelayers:
-    - grassland_shp
+    - farms
   latitude: 28.183
   longitude: 84.853
   maxZoom: 18
@@ -16,7 +16,7 @@ controls:
   legend: false
   zoom: false
 renderlayers:
-  - grassland_shp
+  - farms
   - osm
 baselayers:
   - id: osm
@@ -29,17 +29,17 @@ baselayers:
     tile:
       url: https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png
 featurelayers:
-  - id: grassland_shp
+  - id: farms
     type: WMS
-    title: Nepal Grassslands
-    description: Nepal Grassslands
+    title: Nepal Farmland
+    description: Nepal Farmland
     source:
       name: "FTF"
       attribution: "FTF GeoNode"
       site: "FTF GeoNode"
     wms:
       version: "1.1.1"
-      layers: ["geonode:grassland_shp"]
+      layers: ["geonode:farms"]
       styles: []
       format: 'image/png'
       transparent: true

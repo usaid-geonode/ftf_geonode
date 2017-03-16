@@ -30,6 +30,7 @@ import geonode.proxy.urls
 
 from geonode.api.urls import api
 from geonode.api.views import verify_token, roles, users, admin_role
+from ftf_geonode.views import dashboard_config
 
 import autocomplete_light
 
@@ -53,6 +54,7 @@ urlpatterns = patterns('',
                        # FTF Pages
                        url(r'^viewer/?$', TemplateView.as_view(template_name='viewer.html'), name='viewer'),
                        url(r'^apis/?$', TemplateView.as_view(template_name='apis.html'), name='apis'),
+                       url(r'^dashboards/(?P<id>[^/]*)$', dashboard_config, name='dashboard_config'),
 
                        # Static pages
                        url(r'^/?$', TemplateView.as_view(template_name='site_index.html'), name='home'),

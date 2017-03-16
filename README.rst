@@ -11,8 +11,8 @@ make all NAME=nepal URL=http://download.geofabrik.de/asia/nepal-latest.osm.pbf D
 CREATE DATABASE osm_nepal WITH TEMPLATE template1 OWNER ftf_geonode;
 
 
-python scripts/import_osm.py --config osm.yml --pbf osm/data/nepal-latest.osm.pbf --regions Nepal
-
+python scripts/import_osm.py --config osm.yml --pbf /home/ubuntu/nepal-latest.osm.pbf --regions Nepal --geometry-type=POINT
+python scripts/update_osm_styles.py --config osm.yml --geometry-type=POLYGON
 
 sudo apt-get install osmctools
 

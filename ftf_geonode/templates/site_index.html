@@ -45,19 +45,19 @@ This is where you can override the hero area block. You can simply modify the co
       <div class="col-md-4">
         <h3>Baseline Data</h3>
         <iframe
-            src="{% url "viewer" %}?main:config={{ STATIC_URL }}dashboards/baseline.yml"
+            src="{% url "viewer" %}?main:config={% url "dashboard_config" 'baseline' %}"
             style="width:100%; height: 300px;border: 2px solid rgb(97, 153, 142);" frameborder=0></iframe>
       </div>
       <div class="col-md-4">
         <h3>Operational Data</h3>
         <iframe
-            src="{% url "viewer" %}?main:config={{ STATIC_URL }}dashboards/operational.yml"
+            src="{% url "viewer" %}?main:config={% url "dashboard_config" 'operational' %}"
             style="width:100%; height: 300px;border: 2px solid rgb(97, 153, 142);" frameborder=0></iframe>
       </div>
       <div class="col-md-4">
         <h3>Thematic Data</h3>
         <iframe
-            src="{% url "viewer" %}?main:config={{ STATIC_URL }}dashboards/thematic.yml"
+            src="{% url "viewer" %}?main:config={% url "dashboard_config" 'thematic' %}"
             style="width:100%; height: 300px;border: 2px solid rgb(97, 153, 142);" frameborder=0></iframe>
       </div>
     </div>

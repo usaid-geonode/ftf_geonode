@@ -4,6 +4,7 @@ title: FTF GeoNode
 view:
   baselayer: osm
   featurelayers:
+    - cities
     - nepal_ftf_zoi
   latitude: 28.183
   longitude: 84.853
@@ -16,6 +17,7 @@ controls:
   legend: false
   zoom: false
 renderlayers:
+  - cities
   - nepal_ftf_zoi
   - osm
 baselayers:
@@ -58,3 +60,35 @@ featurelayers:
               - { "attribute": "NAME_0", "label": "Name_0", "value": "{{ feature.attributes.NAME_0 }}" }
               - { "attribute": NAME_1, "label": "NAME_1", "value": "{{ feature.attributes.NAME_1 }}" }
               - { "attribute": NAME_2, "label": "NAME_2", "value": "{{ feature.attributes.NAME_2 }}" }
+  - id: cities
+    type: GeoJSON
+    title: Nepal Cities
+    description: Nepal Cities
+    source:
+      name: "FTF"
+      attribution: "FTF GeoNode"
+      site: "FTF GeoNode"
+    geojson:
+      url: "/geoserver/wfs?srsName=EPSG%3A4326&typename=geonode%3Acities&outputFormat=json&version=1.0.0&service=WFS&request=GetFeature"
+    carto:
+      styles:
+        - id: default
+          title: Default Style
+          description: Default Style
+          symbolizers:
+            - id: icon
+              title: Icon Symbolizer
+              description: Icon Symbolizer
+              type: point
+              static:
+                properties:
+                  fillColor: '#0000AA'
+                  fillOpacity: 0.6
+                  radius: 12
+                  strokeColor: '#0000DD'
+                  strokeWidth: 1.0
+                  textAlign: center
+                  textBaseline: middle
+                  textCode: f096
+                  textColor: white
+                  textFont: normal 12px FontAwesome

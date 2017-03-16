@@ -4,7 +4,8 @@ title: FTF GeoNode
 view:
   baselayer: osm
   featurelayers:
-    - train_stations_shp
+    - aerodromes_point
+    - banks
     - wld_poi_warehouses_wfp
   latitude: 28.183
   longitude: 84.853
@@ -17,8 +18,8 @@ controls:
   legend: false
   zoom: false
 renderlayers:
-  - train_stations_shp
-  - wld_poi_warehouses_wfp
+  - aerodromes_point
+  - banks
   - osm
 baselayers:
   - id: osm
@@ -121,7 +122,7 @@ featurelayers:
     popup:
       - title: "Train Station"
         panes: []
-  - id: banks_shp
+  - id: banks
     type: GeoJSON
     title: Nepal Banks
     description: Nepal Banks
@@ -130,7 +131,7 @@ featurelayers:
       attribution: "FTF GeoNode"
       site: "FTF GeoNode"
     geojson:
-      url: "/geoserver/wfs?srsName=EPSG%3A4326&typename=geonode%3Abanks_shp&outputFormat=json&version=1.0.0&service=WFS&request=GetFeature"
+      url: "/geoserver/wfs?srsName=EPSG%3A4326&typename=geonode%3Abanks&outputFormat=json&version=1.0.0&service=WFS&request=GetFeature"
     carto:
       styles:
         - id: default
@@ -153,6 +154,35 @@ featurelayers:
                   textCode: f155
                   textColor: white
                   textFont: normal 20px FontAwesome
-    popup:
-      - title: "Bank"
-        panes: []
+  - id: aerodromes_point
+    type: GeoJSON
+    title: Aerodromes Point
+    description: Aerodromes Point
+    source:
+      name: "FTF"
+      attribution: "FTF GeoNode"
+      site: "FTF GeoNode"
+    geojson:
+      url: "/geoserver/wfs?srsName=EPSG%3A4326&typename=geonode%3Aaerodromes_point&outputFormat=json&version=1.0.0&service=WFS&request=GetFeature"
+    carto:
+      styles:
+        - id: default
+          title: Default Style
+          description: Default Style
+          symbolizers:
+            - id: icon
+              title: Icon Symbolizer
+              description: Icon Symbolizer
+              type: point
+              static:
+                properties:
+                  fillColor: '#0000AA'
+                  fillOpacity: 0.6
+                  radius: 12
+                  strokeColor: '#0000DD'
+                  strokeWidth: 1.0
+                  textAlign: center
+                  textBaseline: middle
+                  textCode: f072
+                  textColor: white
+                  textFont: normal 12px FontAwesome

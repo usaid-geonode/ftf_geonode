@@ -92,3 +92,13 @@ a:hover {
     background-color: rgb(238, 238, 238);
     color: rgb(208, 15, 66);
 }
+
+
+.resourcebase-snippet .item-thumb a {
+  display: block;
+  border: 2px solid rgb(97, 153, 142);
+  background: black;
+}
+.resourcebase-snippet .item-thumb a:hover img {
+  opacity: 0.6;
+}
