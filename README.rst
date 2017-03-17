@@ -20,3 +20,6 @@ sudo apt-get install osmctools
 sudo apt-get install libgdal-dev libgeos-dev libgeos-c1v5 libpq-dev gdal-bin
 
 ec2-34-205-161-42.compute-1.amazonaws.com ansible_host=ec2-34-205-161-42.compute-1.amazonaws.com ansible_ssh_private_key_file=~/workspaces/ftf-geonode/auth/patrick_ftf_geonode_1
+
+
+sudo ln -s libproj.so.9.1.0 libproj.so.0

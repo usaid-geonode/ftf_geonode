@@ -18,6 +18,7 @@ if not hasattr(django, 'apps'):
 
 from django.core.management import call_command
 from django.conf import settings
+from geonode.base.models import Link, SpatialRepresentationType, TopicCategory, Region, License
 from geonode.layers.management.commands import importlayers
 from geonode.layers.models import Layer
 
@@ -124,6 +125,7 @@ def run(args):
             print "Importing layer", layer["id"]
             layerCache = layer.get("cache")
             keep = encode_keep(layer["keep"])
+            license = args.license or layer.get("license", None)
             category = layer.get("category", None)
             regions = args.regions or layer.get("regions", None)
             if regions:
@@ -199,13 +201,16 @@ def run(args):
             #        print "Auth: ", auth
             #        response = requests.delete(url, auth=auth)
 
+            abstract = "OSM Extract imported at "+now.strftime("%Y-%m-%d %H:%M:%S")+".  Filtered by the following osm tags: "+keep
             call_command(
                 'importlayers',
                 path_shp_actual,
                 title=layerId,
+                abstract=abstract,
                 date=now.strftime("%Y-%m-%d %H:%M:%S"),
                 category=category,
                 keywords=",".join(layer.get("keywords", [])),
+                license=license,
                 regions=regions,
                 overwrite=True)
 
@@ -236,10 +241,15 @@ def run(args):
             print "Skipping layer", layer["id"]
 
 #==#
-parser = argparse.ArgumentParser(description='Update GeoNode with data from .osm file')
+licenses = [x.abbreviation or x.name for x in License.objects.all()]
+categories = [x.identifier for x in TopicCategory.objects.all()]
+#==#
+parser = argparse.ArgumentParser(description='Update GeoNode with data from .osm file.')
 parser.add_argument("--pbf", help="The path to the .osm.pbf file.")
 parser.add_argument("--config", help="The path to the config file.")
 parser.add_argument("--temp", default="temp", help="The path to the temp folder.")
+parser.add_argument("--category", default=None, help="The category for the layers.  One of the following: "+(", ".join(categories)))
+parser.add_argument("--license", default=None, help="The license for the layers. One of the following: "+(", ".join(licenses)))
 parser.add_argument("--regions", default=None, help="The GeoNode metadata region for the layers.")
 parser.add_argument("--geometry-type", '-gt', default=None, help="Only update layers with geometry type POINT.")
 parser.add_argument("--layer-id", '-l', default=None, help="Only layers with the layer id.")

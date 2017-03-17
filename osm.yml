@@ -69,7 +69,7 @@ layers:
       - amenity=bank
       - amenity=atm
       - amenity=bureau_de_change
-    category: society
+    category: economy
     keywords:
       - osm
       - banks
@@ -77,7 +77,7 @@ layers:
   #  geometry_type: POLYGON
   #  keep:
   #    - building=*
-  #  category: society
+  #  category: structure
   #  keywords:
   #    - osm
   #    - buildings
@@ -117,7 +117,7 @@ layers:
       - landuse=farmland
       - landuse=farmyard
       - landuse=livestock
-    category: society
+    category: farming
     keywords:
       - osm
       - landuse
@@ -128,7 +128,7 @@ layers:
     keep:
       - landuse=forest
       - natural=wood
-    category: society
+    category: environment
     keywords:
       - osm
       - forest
@@ -143,7 +143,7 @@ layers:
       - natural=scrub
       - natural=heath
       - natural=grassland
-    category: society
+    category: environment
     keywords:
       - osm
       - grassland
@@ -167,7 +167,7 @@ layers:
       - tourism=hostel
       - tourism=motel
       - tourism=guest_house
-    category: society
+    category: economy
     keywords:
       - osm
       - tourism
@@ -176,7 +176,7 @@ layers:
     geometry_type: LINE
     keep:
       - waterway=*
-    category: society
+    category: inlandWaters
     keywords:
       - osm
       - hydrology
@@ -193,7 +193,7 @@ layers:
       - landuse=salt_pond
       - waterway=river
       - waterway=riverbank
-    category: society
+    category: inlandWaters
     keywords:
       - osm
       - hydrology
@@ -225,7 +225,7 @@ layers:
       - amenity=social_facility
       - amenity=veterinary
       - amenity=blood_donation
-    category: society
+    category: health
     keywords:
       - osm
       - health
@@ -245,7 +245,7 @@ layers:
       - amenity=social_facility
       - amenity=veterinary
       - amenity=blood_donation
-    category: society
+    category: health
     keywords:
       - osm
       - health
@@ -258,7 +258,7 @@ layers:
       - highway=bridleway
       - highway=steps
       - highway=path
-    category: society
+    category: transportation
     keywords:
       - osm
       - transit
