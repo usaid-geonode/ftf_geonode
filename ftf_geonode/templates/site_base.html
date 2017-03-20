@@ -28,7 +28,7 @@
   <div id="navbar" class="navbar-collapse collapse">
     <ul class="nav navbar-nav toolbar">
       <li id="nav_layers"><a href="{% url "layer_browse" %}">{% trans "Datasets" %}</a></li>
-      <li id="nav_osm"><a href="{% url "layer_browse" %}?keywords__slug__in=osm">{% trans "OSM" %}</a></li>
+      <li id="nav_osm"><a href="{% url "layer_browse" %}?keywords__slug__in=osm">{% trans "OSM Extracts" %}</a></li>
       <li id="nav_apis"><a href="/apis">{% trans "APIs" %}</a></li>
       <li id="nav_about"><a href="{% url "about" %}">About</a></li>
     </ul>
@@ -88,7 +88,7 @@
         <ul class="list-unstyled">
           <li>Data</li>
           <li><a href="{% url "layer_browse" %}">Open Data</a></li>
-          <li><a href="{% url "layer_browse" %}">OSM Extracts</a></li>
+          <li><a href="{% url "layer_browse" %}?keywords__slug__in=osm">OSM Extracts</a></li>
           {% if user.is_authenticated %}
           <li><a href="{% url "layer_upload" %}">Contribute</a></li>
           {% endif %}

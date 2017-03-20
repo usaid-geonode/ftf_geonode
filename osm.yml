@@ -406,3 +406,14 @@ layers:
       - osm
       - energy
       - power
+  - id: markets
+    cache: amenity
+    geometry_type: POINT
+    keep:
+      - amenity=market
+      - amenity=marketplace
+    category: economy
+    keywords:
+      - osm
+      - markets
+      - economy
