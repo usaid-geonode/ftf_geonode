@@ -280,6 +280,17 @@ layers:
       - osm
       - railway
       - railroad
+      - public_transport
+  - id: railway_stations
+    geometry_type: POINT
+    keep:
+      - "railway=station"
+    category: transportation
+    keywords:
+      - osm
+      - railway
+      - railroad
+      - public_transport
   #- id: school_point
   #  cache: amenity
   #  geometry_type: POINT
@@ -386,3 +397,12 @@ layers:
       - osm
       - places
       - placenames
+  - id: powerlines
+    geometry_type: LINE
+    keep:
+      - power=line
+    category: utilitiesCommunication
+    keywords:
+      - osm
+      - energy
+      - power

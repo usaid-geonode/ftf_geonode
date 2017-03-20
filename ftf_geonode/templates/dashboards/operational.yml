@@ -1,3 +1,4 @@
+{% verbatim %}
 ---
 
 title: FTF GeoNode
@@ -5,8 +6,12 @@ view:
   baselayer: osm
   featurelayers:
     - aerodromes_point
+    - medical_point
     - banks
-    - wld_poi_warehouses_wfp
+    - cities
+    - towns
+    - villages
+#    - wld_poi_warehouses_wfp
   latitude: 28.183
   longitude: 84.853
   maxZoom: 18
@@ -19,7 +24,11 @@ controls:
   zoom: false
 renderlayers:
   - aerodromes_point
+  - medical_point
   - banks
+  - cities
+  - towns
+  - villages
   - osm
 baselayers:
   - id: osm
@@ -32,36 +41,38 @@ baselayers:
     tile:
       url: https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png
 featurelayers:
-  - id: wld_poi_warehouses_wfp
-    type: WMS
-    title: Nepal Feed the Future Zones of Interest
-    description: Nepal Feed the Future Zones of Interest
-    source:
-      name: "WFP"
-      attribution: "WFP GeoNode"
-      site: "WFP GeoNode"
-    wms:
-      version: "1.1.1"
-      layers: ["geonode:wld_poi_warehouses_wfp"]
-      styles: []
-      format: 'image/png'
-      transparent: true
-      buffer: 256
-      url: "http://geonode.wfp.org/cors/geoserver/geonode/wms"
-    wfs:
-      version: "1.0.0"  # Needs to 1.0.0 or returns bad results for some reason.
-      url: "http://geonode.wfp.org/cors/geoserver/wfs"
-      geometry: shape
-  - id: train_stations_shp
+#  - id: wld_poi_warehouses_wfp
+#    type: WMS
+#    title: Nepal Feed the Future Zones of Interest
+#    description: Nepal Feed the Future Zones of Interest
+#    source:
+#      name: "WFP"
+#      attribution: "WFP GeoNode"
+#      site: "WFP GeoNode"
+#    wms:
+#      version: "1.1.1"
+#      layers: ["geonode:wld_poi_warehouses_wfp"]
+#      styles: []
+#      format: 'image/png'
+#      transparent: true
+#      buffer: 256
+#      url: "http://geonode.wfp.org/cors/geoserver/geonode/wms"
+#    wfs:
+#      version: "1.0.0"  # Needs to 1.0.0 or returns bad results for some reason.
+#      url: "http://geonode.wfp.org/cors/geoserver/wfs"
+#      geometry: shape
+  - id: medical_point
     type: GeoJSON
-    title: Nepal Train Stations
-    description: Nepal Train Stations
+    title: Nepal Medical Point
+    description: Nepal Medical Point
     source:
       name: "FTF"
       attribution: "FTF GeoNode"
       site: "FTF GeoNode"
-    geojson:
-      url: "/geoserver/wfs?srsName=EPSG%3A4326&typename=geonode%3Atrain_stations_shp&outputFormat=json&version=1.0.0&service=WFS&request=GetFeature&access_token=HLanY1cyvsgx7zE2Qct6YCch3IWLAA"
+    wfs:
+      layers: "geonode:medical_point"
+      url: "/geoserver/wfs"
+      version: "1.0.0"
     carto:
       styles:
         - id: default
@@ -81,13 +92,13 @@ featurelayers:
                   strokeWidth: 1.0
                   textAlign: center
                   textBaseline: middle
-                  textCode: f238
+                  textCode: f0f8
                   textColor: white
                   textFont: normal 20px FontAwesome
     popup:
-      - title: "Train Station"
+      - title: "Medical Point"
         panes: []
-  - id: cities_shp
+  - id: cities
     type: GeoJSON
     title: Nepal Cities
     description: Nepal Cities
@@ -95,8 +106,10 @@ featurelayers:
       name: "FTF"
       attribution: "FTF GeoNode"
       site: "FTF GeoNode"
-    geojson:
-      url: "/geoserver/wfs?srsName=EPSG%3A4326&typename=geonode%3Acities_shp&outputFormat=json&version=1.0.0&service=WFS&request=GetFeature"
+    wfs:
+      layers: "geonode:cities"
+      url: "/geoserver/wfs"
+      version: "1.0.0"
     carto:
       styles:
         - id: default
@@ -120,7 +133,81 @@ featurelayers:
                   textColor: white
                   textFont: normal 20px FontAwesome
     popup:
-      - title: "Train Station"
+      - title: "City"
+        panes: []
+  - id: towns
+    type: GeoJSON
+    title: Nepal Towns
+    description: Nepal Towns
+    source:
+      name: "FTF"
+      attribution: "FTF GeoNode"
+      site: "FTF GeoNode"
+    wfs:
+      layers: "geonode:towns"
+      url: "/geoserver/wfs"
+      version: "1.0.0"
+    carto:
+      styles:
+        - id: default
+          title: Default Style
+          description: Default Style
+          symbolizers:
+            - id: icon
+              title: Icon Symbolizer
+              description: Icon Symbolizer
+              type: point
+              static:
+                properties:
+                  fillColor: '#0000AA'
+                  fillOpacity: 0.6
+                  radius: 18
+                  strokeColor: '#0000DD'
+                  strokeWidth: 1.0
+                  textAlign: center
+                  textBaseline: middle
+                  textCode: f096
+                  textColor: white
+                  textFont: normal 20px FontAwesome
+    popup:
+      - title: "Town"
+        panes: []
+  - id: villages
+    type: GeoJSON
+    title: Nepal Villages
+    description: Nepal Villages
+    source:
+      name: "FTF"
+      attribution: "FTF GeoNode"
+      site: "FTF GeoNode"
+    wfs:
+      layers: "geonode:villages"
+      url: "/geoserver/wfs"
+      version: "1.0.0"
+    carto:
+      styles:
+        - id: default
+          title: Default Style
+          description: Default Style
+          symbolizers:
+            - id: icon
+              title: Icon Symbolizer
+              description: Icon Symbolizer
+              type: point
+              static:
+                properties:
+                  fillColor: '#0000AA'
+                  fillOpacity: 0.6
+                  radius: 18
+                  strokeColor: '#0000DD'
+                  strokeWidth: 1.0
+                  textAlign: center
+                  textBaseline: middle
+                  textCode: f096
+                  textColor: white
+                  textFont: normal 20px FontAwesome
+    popup:
+      - title: "Villages"
         panes: []
   - id: banks
     type: GeoJSON
@@ -186,3 +273,61 @@ featurelayers:
                   textCode: f072
                   textColor: white
                   textFont: normal 12px FontAwesome
+    popup:
+      - title: "Airport"
+        panes: []
+navbars:
+  - id: layers
+    placement: top
+    intents:
+      - name: toggleFeatureLayer
+        properties: [{ name: layer, value: "{{ tab.value }}" }]
+    css:
+      properties:
+        - { name: left, value: 5% }
+        - { name: right, value: 5% }
+        - { name: height, value: 1rem }
+    tabs:
+      - title: ""
+        value: aerodromes_point
+        tooltip: { placement: bottom, content: "aerodromes_point" }
+        css:
+          properties:
+            - { name: font-size, value: 2rem }
+            - { name: font-family, value: FontAwesome }
+      - title: ""
+        value: banks
+        tooltip: { placement: bottom, content: "banks" }
+        css:
+          properties:
+            - { name: font-size, value: 2rem }
+            - { name: font-family, value: FontAwesome }
+      - title: ""
+        value: medical_point
+        tooltip: { placement: bottom, content: "medical_point" }
+        css:
+          properties:
+            - { name: font-size, value: 2rem }
+            - { name: font-family, value: FontAwesome }
+      - title: ""
+        value: cities
+        tooltip: { placement: bottom, content: "cities" }
+        css:
+          properties:
+            - { name: font-size, value: 2rem }
+            - { name: font-family, value: FontAwesome }
+      - title: "towns"
+        value: towns
+        tooltip: { placement: bottom, content: "towns" }
+        css:
+          properties:
+            - { name: font-size, value: 2rem }
+            - { name: font-family, value: FontAwesome }
+      - title: "villages"
+        value: villages
+        tooltip: { placement: bottom, content: "villages" }
+        css:
+          properties:
+            - { name: font-size, value: 2rem }
+            - { name: font-family, value: FontAwesome }
+{% endverbatim %}
