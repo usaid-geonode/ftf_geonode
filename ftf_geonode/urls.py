@@ -30,7 +30,7 @@ import geonode.proxy.urls
 
 from geonode.api.urls import api
 from geonode.api.views import verify_token, roles, users, admin_role
-from ftf_geonode.views import dashboard_config
+from ftf_geonode.views import dashboard_config_viewer, dashboard_config_all, dashboard_config_category, dashboard_config_template, dashboard_state
 
 import autocomplete_light
 
@@ -54,7 +54,11 @@ urlpatterns = patterns('',
                        # FTF Pages
                        url(r'^viewer/?$', TemplateView.as_view(template_name='viewer.html'), name='viewer'),
                        url(r'^apis/?$', TemplateView.as_view(template_name='apis.html'), name='apis'),
-                       url(r'^dashboards/(?P<id>[^/]*)$', dashboard_config, name='dashboard_config'),
+                       url(r'^dashboards/viewer/config$', dashboard_config_viewer, name='dashboard_config_viewer'),
+                       url(r'^dashboards/all/config$', dashboard_config_all, name='dashboard_config_all'),
+                       url(r'^dashboards/category/(?P<id>[^/]*)/config$', dashboard_config_category, name='dashboard_config_category'),
+                       url(r'^dashboards/template/(?P<id>[^/]*)/config$', dashboard_config_template, name='dashboard_config_template'),
+                       url(r'^dashboards/(?P<id>[^/]*)/state/(?P<page>[^/]*)$', dashboard_state, name='dashboard_state'),
 
                        # Static pages
                        url(r'^/?$', TemplateView.as_view(template_name='site_index.html'), name='home'),

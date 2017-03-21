@@ -119,6 +119,7 @@ def run(args):
     for layer in config.get("layers"):
         print "####################"
         layerId = layer["id"]
+        layerTitle = layer.get("title") or layer["id"]
         layer_geometry_type = layer.get("geometry_type", "MULTIPOINT")
 
         if ((user_layer_id is None) or (user_layer_id == layer["id"])) and ((user_geometry_type is None) or (user_geometry_type == layer_geometry_type)):
@@ -205,7 +206,8 @@ def run(args):
             call_command(
                 'importlayers',
                 path_shp_actual,
-                title=layerId,
+                layername=layerId,
+                title=layerTitle,
                 abstract=abstract,
                 date=now.strftime("%Y-%m-%d %H:%M:%S"),
                 category=category,

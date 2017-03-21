@@ -42,22 +42,10 @@ This is where you can override the hero area block. You can simply modify the co
 <section id="showcase">
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
-        <a href="{% url "viewer" %}?main:config={% url "dashboard_config" 'baseline' %}"><h3>Baseline Data</h3></a>
+      <div class="col-md-12">
+        <a href="{% url "viewer" %}?main:config={% url "dashboard_config_viewer" %}"><h3>Viewer</h3></a>
         <iframe
-            src="{% url "viewer" %}?main:config={% url "dashboard_config" 'baseline' %}"
-            style="width:100%; height: 300px;border: 2px solid rgb(97, 153, 142);" frameborder=0></iframe>
-      </div>
-      <div class="col-md-4">
-        <a href="{% url "viewer" %}?main:config={% url "dashboard_config" 'operational' %}"><h3>Operational Data</h3></a>
-        <iframe
-            src="{% url "viewer" %}?main:config={% url "dashboard_config" 'operational' %}"
-            style="width:100%; height: 300px;border: 2px solid rgb(97, 153, 142);" frameborder=0></iframe>
-      </div>
-      <div class="col-md-4">
-        <a href="{% url "viewer" %}?main:config={% url "dashboard_config" 'thematic' %}"><h3>Thematic Data</h3></a>
-        <iframe
-            src="{% url "viewer" %}?main:config={% url "dashboard_config" 'thematic' %}"
+            src="{% url "viewer" %}?main:config={% url "dashboard_config_template" 'home' %}"
             style="width:100%; height: 300px;border: 2px solid rgb(97, 153, 142);" frameborder=0></iframe>
       </div>
     </div>

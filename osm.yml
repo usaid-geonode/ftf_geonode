@@ -14,6 +14,7 @@ caches:
       - landuse=*
 layers:
   - id: aerodromes_point
+    title: "Airports (Point)"
     geometry_type: POINT
     keep:
       - aeroway=aerodrome
@@ -23,6 +24,7 @@ layers:
       - airports
       - aerodromes
   - id: aerodromes_polygon
+    title: "Airports (Polygon)"
     geometry_type: POLYGON
     keep:
       - aeroway=aerodrome
@@ -32,6 +34,7 @@ layers:
       - airports
       - aerodromes
   - id: all_places
+    title: "All Places"
     cache: place
     geometry_type: POINT
     keep:
@@ -54,6 +57,7 @@ layers:
       - places
       - placenames
   - id: all_roads
+    title: "All roads"
     geometry_type: LINE
     keep:
       - highway=*
@@ -63,6 +67,7 @@ layers:
       - roads
       - transit
   - id: banks
+    title: "Banks"
     cache: amenity
     geometry_type: POINT
     keep:
@@ -82,6 +87,7 @@ layers:
   #    - osm
   #    - buildings
   - id: built_up_areas
+    title: "Built-up Areas"
     cache: landuse
     geometry_type: POLYGON
     keep:
@@ -101,6 +107,7 @@ layers:
       - landuse
       - built_up_areas
   - id: cities
+    title: "Cities"
     geometry_type: POINT
     keep:
       - place=city
@@ -110,6 +117,7 @@ layers:
       - places
       - cities
   - id: farms
+    title: "Farms"
     cache: landuse
     geometry_type: POLYGON
     keep:
@@ -124,6 +132,7 @@ layers:
       - farms
       - farmland
   - id: forest
+    title: "Forest"
     geometry_type: POLYGON
     keep:
       - landuse=forest
@@ -134,6 +143,7 @@ layers:
       - forest
       - landcover
   - id: grassland
+    title: "Grassland"
     geometry_type: POLYGON
     keep:
       - landuse=grass
@@ -149,6 +159,7 @@ layers:
       - grassland
       - landcover
   - id: helipads
+    title: "Helipads"
     geometry_type: POINT
     keep:
       - aeroway=helipad
@@ -161,6 +172,7 @@ layers:
       - heliport
       - transit
   - id: hotels
+    title: "Hotels"
     geometry_type: POINT
     keep:
       - tourism=hotel
@@ -173,6 +185,7 @@ layers:
       - tourism
       - hotels
   - id: inland_water_line
+    title: "Inland Waters (Line)"
     geometry_type: LINE
     keep:
       - waterway=*
@@ -183,6 +196,7 @@ layers:
       - hydro
       - water
   - id: inland_water_polygon
+    title: "Inland Waters (Polygon)"
     geometry_type: POLYGON
     keep:
       - natural=water
@@ -200,6 +214,7 @@ layers:
       - hydro
       - water
   - id: main_roads
+    title: "Main Roads"
     cache: highway
     geometry_type: LINE
     keep:
@@ -212,6 +227,7 @@ layers:
       - roads
       - transit
   - id: medical_point
+    title: "Medical Points"
     cache: amenity
     geometry_type: POINT
     keep:
@@ -232,6 +248,7 @@ layers:
       - medical
       - hospital
   - id: medical_polygon
+    title: "Medical Polygons"
     cache: amenity
     geometry_type: POLYGON
     keep:
@@ -252,6 +269,7 @@ layers:
       - medical
       - hospital
   - id: paths
+    title: "Paths"
     geometry_type: LINE
     keep:
       - highway=footway
@@ -264,6 +282,7 @@ layers:
       - transit
       - paths
   - id: police_stations
+    title: "Police Stations"
     geometry_type: POINT
     keep:
       - amenity=police
@@ -272,6 +291,7 @@ layers:
       - osm
       - police
   - id: railways
+    title: "Railways"
     geometry_type: LINE
     keep:
       - railway=*
@@ -282,6 +302,7 @@ layers:
       - railroad
       - public_transport
   - id: railway_stations
+    title: "Railway Stations"
     geometry_type: POINT
     keep:
       - "railway=station"
@@ -328,6 +349,7 @@ layers:
   #    - schools
   #    - education
   - id: towns
+    title: "Towns"
     geometry_type: POINT
     keep:
       - place=town
@@ -337,6 +359,7 @@ layers:
       - places
       - placenames
   - id: tracks
+    title: "Tracks"
     geometry_type: LINE
     keep:
       - place=town
@@ -344,6 +367,7 @@ layers:
     keywords:
       - highway=track
   - id: transport_point
+    title: "Transport Points"
     geometry_type: POINT
     keep:
       - amenity=bicycle_parking
@@ -375,6 +399,7 @@ layers:
       - osm
       - transit
   - id: utilities
+    title: "Utilities"
     cache: amenity
     geometry_type: POINT
     keep:
@@ -389,6 +414,7 @@ layers:
       - utilities
       - water
   - id: villages
+    title: "Villages"
     geometry_type: POINT
     keep:
       - place=village
@@ -398,6 +424,7 @@ layers:
       - places
       - placenames
   - id: powerlines
+    title: "Powerlines"
     geometry_type: LINE
     keep:
       - power=line
@@ -407,6 +434,7 @@ layers:
       - energy
       - power
   - id: markets
+    title: "Markets"
     cache: amenity
     geometry_type: POINT
     keep:

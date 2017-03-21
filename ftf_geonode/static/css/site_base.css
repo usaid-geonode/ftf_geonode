@@ -102,3 +102,26 @@ a:hover {
 .resourcebase-snippet .item-thumb a:hover img {
   opacity: 0.6;
 }
+
+/*.geodash-map-overlays .geodash-map-overlay {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0.5rem 1rem;
+  color: white !important;
+}*/
+
+.geodash-map-navbars .geodash-map-navbar div a {
+  color: white !important;
+  font-size: 1rem;
+  font-family: FontAwesome;
+}
+
+.geodash-map-navbars .geodash-map-navbar div a:hover {
+  color: #56b6c2 !important;
+  background: rgba(0,0,0, 1.0) !important;
+}
+
+/*.geodash-map-navbars .geodash-map-navbar.geodash-placement-bottom div a {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 0px 0px 0px 0px;
+  border-bottom: 2px solid rgb(97, 153, 142);
+}*/
