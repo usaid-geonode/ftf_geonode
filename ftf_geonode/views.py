@@ -9,6 +9,8 @@ from django.template.loader import get_template
 from django.template import RequestContext
 from django.http import HttpResponse
 
+from geonode.base.models import TopicCategory
+
 from ftf_geonode.utils import build_overlays, build_navbar_title, build_navbar_toolbar, build_navbar_featurelayers, build_navbar_categories, build_baselayers, build_featurelayers
 
 def dashboard_config_viewer(request):
@@ -72,12 +74,14 @@ def dashboard_config_all(request):
 def dashboard_config_category(request, id=None):
     data = None
 
+    category = TopicCategory.objects.get(identifier=id)
+
     featurelayers = build_featurelayers(category=id)
 
     data = yaml.load(get_template("dashboards/viewer.yml").render({}))
     data["overlays"] = build_overlays(category=id, featurelayers=featurelayers)
     data["navbars"] = [
-        build_navbar_title(breadcrumbs=[{"title": "Category: "+id}]),
+        build_navbar_title(breadcrumbs=[{"title": "Category: "+category.gn_description}]),
         build_navbar_toolbar(),
         build_navbar_featurelayers(featurelayers=featurelayers)
     ]

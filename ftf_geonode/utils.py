@@ -212,12 +212,36 @@ def build_navbar_toolbar(geolocation=True):
 
 def build_navbar_featurelayers(featurelayers=None):
 
-    navbar_featurelayers_tabs = []
+    tabs = []
+
+    tab = {
+        "title": "Layers (Click on buttons below to toggle layers on/off)",
+        "value": "all",
+        #"tooltip": { "placement": "left", "content": layer.title },
+        "css": {
+            "properties": [
+              #{ "name": "font-size", "value": "1rem" },
+              #{ "name": "font-family", "value": "FontAwesome" },
+              { "name": "background", "value": "rgba(0, 0, 0, 0.8)" },
+              { "name": "border-radius", "value": "0px 0px 0px 0px" },
+              { "name": "border-top", "value": "8px solid rgb(97, 153, 142)" }
+
+            ]
+        },
+        "wrapper": {
+            "css": {
+                "classes": ["col-12"]
+            }
+        }
+    }
+    tabs.append(tab)
+
     for fl in featurelayers:
-        navbar_featurelayers_tabs.append({
+        tabs.append({
             "title": fl["title"],
             "value": fl["id"],
             #"tooltip": { "placement": "left", "content": layer.title },
+            "tooltip": { "placement": "top", "container": "body", "content": fl['description'] },
             "css": {
                 "properties": [
                   #{ "name": "font-size", "value": "1rem" },
@@ -241,7 +265,7 @@ def build_navbar_featurelayers(featurelayers=None):
             ]
         },
         "markdown": False,
-        "tabs": navbar_featurelayers_tabs
+        "tabs": tabs
     }
 
     return navbar_featurelayers
@@ -251,7 +275,26 @@ def build_navbar_categories():
     tabs = []
 
     tab = {
-        "title": "All",
+        "title": "Categories (Select a category below)",
+        "value": "all",
+        "css": {
+            "properties": [
+              { "name": "background", "value": "rgba(0, 0, 0, 0.8)" },
+              { "name": "border-radius", "value": "0px 0px 0px 0px" },
+              { "name": "border-top", "value": "8px solid rgb(97, 153, 142)" }
+            ]
+        },
+        "wrapper": {
+            "css": {
+                "classes": ["col-12"]
+            }
+        }
+    }
+    tabs.append(tab)
+
+    count = Layer.objects.all().count()
+    tab = {
+        "title": "All Layers ("+str(count)+")",
         "value": "all",
         #"tooltip": { "placement": "left", "content": layer.title },
         "css": {
@@ -270,24 +313,26 @@ def build_navbar_categories():
     tabs.append(tab)
 
     for category in TopicCategory.objects.all().order_by("identifier"):
-        tab = {
-            "title": category.gn_description,
-            "value": category.identifier,
-            #"tooltip": { "placement": "left", "content": layer.title },
-            "css": {
-                "properties": [
-                  #{ "name": "font-size", "value": "1rem" },
-                  #{ "name": "font-family", "value": "FontAwesome" },
-                  { "name": "background", "value": "rgba(0, 0, 0, 0.8)" },
-                  { "name": "border-radius", "value": "0px 0px 0px 0px" }
-                ]
-            },
-            "link": {
-                "url": reverse('viewer')+"?main:config="+reverse('dashboard_config_category', args=[category.identifier]),
-                "target": "_self"
+        count = Layer.objects.filter(category__identifier=category.identifier).count()
+        if count > 0:
+            tab = {
+                "title": category.gn_description +" ("+str(count)+")",
+                "value": category.identifier,
+                "tooltip": { "placement": "top", "container": "body", "content": category.description },
+                "css": {
+                    "properties": [
+                      #{ "name": "font-size", "value": "1rem" },
+                      #{ "name": "font-family", "value": "FontAwesome" },
+                      { "name": "background", "value": "rgba(0, 0, 0, 0.8)" },
+                      { "name": "border-radius", "value": "0px 0px 0px 0px" }
+                    ]
+                },
+                "link": {
+                    "url": reverse('viewer')+"?main:config="+reverse('dashboard_config_category', args=[category.identifier]),
+                    "target": "_self"
+                }
             }
-        }
-        tabs.append(tab)
+            tabs.append(tab)
 
     navbar_categories = {
         "id": "categories",
@@ -329,7 +374,6 @@ def build_featurelayers(category=None):
 
     layers = None
     if category:
-        print "Category:", category
         layers = Layer.objects.filter(category__identifier=category).order_by('title')
     else:
         layers = Layer.objects.all().order_by('title')
