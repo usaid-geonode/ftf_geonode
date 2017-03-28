@@ -56,14 +56,16 @@ docs/_build/
 # PyBuilder
 target/
 
-# FTF GeoNode
+# USAID GeoCenter GeoNode
 downloaded/
 geoserver/
 uploaded/
 ftf_geonode.egg-info
+geocenter_geonode.egg-info
 development.db
 development.db-journal
 ec2.yml
 inventory
 temp
 osmfilter_tempfile.*
+node_modules

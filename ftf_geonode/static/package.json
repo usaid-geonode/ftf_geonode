@@ -1,0 +1,26 @@
+{
+  "name": "geocenter-geonode",
+  "version": "0.0.1",
+  "author": "USAID GeoCenter GeoNode Developers",
+  "description": "Static code and assets for USAID GeoCenter GeoNode",
+  "contributors": [
+    {
+      "name": "Patrick Dufour"
+    }
+  ],
+  "scripts": {
+    "test": "jshint **.js"
+  },
+  "license": "BSD",
+  "private": "false",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "del": "*",
+    "gulp": "^3.9.0",
+    "gulp-util": "*",
+    "gulp-concat": "*",
+    "gulp-less": "*",
+    "path": "*"
+  }
+}

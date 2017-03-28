@@ -4,13 +4,19 @@
   vars:
     app_name: ftf_geonode
     github_user: ftf-geonode
-    server_name: ec2-34-205-161-42.compute-1.amazonaws.com
+    server_name: geonode.geocenter.io
     deploy_user: ubuntu
     code_repository: "https://github.com/ftf-geonode/ftf_geonode.git"
     branch_name: master
     virtualenv_dir: "/home/ubuntu/.venvs"
-    site_url: "http://ec2-34-205-161-42.compute-1.amazonaws.com/"
+    site_url: "http://geonode.geocenter.io/"
     geoserver_url: "http://build.geonode.org/geoserver/latest/geoserver-2.9.x-oauth2.war"
+    pg_max_connections: 400
+    pg_shared_buffers: 1024MB
+    tomcat_xms: "1024M"
+    tomcat_xmx: "4096M"
+    nginx_client_max_body_size: "500M"
+    letsencrypt: True
   gather_facts: False
   pre_tasks:
     - name: Install python for Ansible
@@ -38,4 +44,5 @@
         - unzip
     - setup: # aka gather_facts
   roles:
-     - { role: GeoNode.geonode }
+     - { role: GeoNode.geonode }  # Use Galaxy
+     #- { role: ansible-geonode.git }  # Use Local

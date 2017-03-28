@@ -1,0 +1,168 @@
+@color-primary: rgb(97, 153, 142) !important;
+@font-family-primary: "proxima-nova-soft", sans-serif !important;
+
+.tooltip {
+  z-index: 9999999;
+}
+
+p {
+  font-family: @font-family-primary;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.tk-proxima-nova-soft, h1, h2, h3, h4 .h1, .h2, .h3, .h4 {
+  font-family: @font-family-primary;
+  color: @color-primary;
+  font-weight: 600 !important;
+}
+
+a {
+  color: @color-primary !important;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.navbar-brand {
+    height: 72px;
+    background: none;
+    /*background: url(../img/ftf_geonode_logo.png) no-repeat;*/
+    background-position: center;
+
+    div {
+      font-family: @font-family-primary;
+      font-weight: 600 !important;
+      color: rgb(103, 155, 145) !important;
+    }
+
+    div:hover {
+      color: rgb(103, 155, 145) !important;
+    }
+}
+
+.home {
+
+  .jumbotron {
+    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2)),url('../img/background/jumbotron_background.jpg') no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 7.5em 0 3.75em;
+  }
+
+  .big-search {
+    background: rgb(241, 241, 241)!important;
+  }
+}
+
+#ftf_geonode_navbar {
+  /*background-image: url(../img/background/ftf_background.png);*/
+  background: white;
+  background-repeat: repeat;
+  padding: 2px 0px;
+  border-bottom: 2px solid rgb(97, 153, 142);
+
+  ul li a {
+   font-family: @font-family-primary;
+   font-weight: 600 !important;
+   color: rgb(80, 87, 89);
+   padding-top: 25px;
+   padding-bottom: 25px;
+ }
+
+ #navbar ul li:hover a,  ul li:focus a, ul li:selected a {
+   color: rgb(208, 15, 66) !important;
+ }
+
+ .navbar-nav .dropdown-menu {
+     background-color: white;
+     border-top: 1px solid rgb(97, 153, 142);
+ }
+
+ .navbar-nav ul.dropdown-menu li a {
+   color: rgb(80, 87, 89);
+   font-weight: normal;
+   padding: 3px 20px;
+ }
+
+ .navbar-nav .dropdown-menu li a:hover {
+     background-color: white;
+     border: 0;
+ }
+
+ .navbar-nav .dropdown-menu li a:hover {
+     background-color: rgb(238, 238, 238);
+     color: rgb(208, 15, 66);
+ }
+
+}
+
+
+
+
+#datasets category:hover i, #datasets category:hover h4 {
+  color: rgb(208, 15, 66) !important;
+}
+
+
+
+.resourcebase-snippet {
+
+  .item-thumb a {
+    display: block;
+    border: 2px solid rgb(97, 153, 142);
+    background: black;
+  }
+
+  .item-thumb a:hover img {
+    opacity: 0.6;
+  }
+
+}
+
+
+
+/*.geodash-map-overlays .geodash-map-overlay {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0.5rem 1rem;
+  color: white !important;
+}*/
+
+.geodash-map-navbars .geodash-map-navbar div a {
+  color: white !important;
+  font-size: 1rem;
+  font-family: FontAwesome;
+}
+
+.geodash-map-navbars .geodash-map-navbar div a:hover {
+  color: #56b6c2 !important;
+  background: rgba(0,0,0, 1.0) !important;
+}
+
+/*.geodash-map-navbars .geodash-map-navbar.geodash-placement-bottom div a {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 0px 0px 0px 0px;
+  border-bottom: 2px solid rgb(97, 153, 142);
+}*/
+
+
+/* Search Filters */
+
+nav.filter {
+  h4 {
+    background: transparent;
+    border: 2px solid rgb(97, 153, 142);
+    font-family: @font-family-primary;
+    font-weight: 600 !important;
+  }
+}
+
+nav.filter h4:hover {
+  background: #e7e7e7;
+}
+
+
+a.btn-primary, a.btn-danger {
+  color: white !important;
+}

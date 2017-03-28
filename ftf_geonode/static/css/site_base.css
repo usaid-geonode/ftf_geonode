@@ -1,131 +1,130 @@
 .tooltip {
   z-index: 9999999;
 }
-
 p {
-  font-family: "proxima-nova-soft", sans-serif;
+  font-family: "proxima-nova-soft", sans-serif !important;
   font-size: 16px;
   line-height: 26px;
 }
-
-.tk-proxima-nova-soft, h1, h2, h3, .h1, .h2, .h3 {
-  font-family: "proxima-nova-soft", sans-serif;
-  color: rgb(97, 153, 142);
+.tk-proxima-nova-soft,
+h1,
+h2,
+h3,
+h4 .h1,
+.h2,
+.h3,
+.h4 {
+  font-family: "proxima-nova-soft", sans-serif !important;
+  color: #61998e !important;
+  font-weight: 600 !important;
 }
-
 a {
-  color: rgb(97, 153, 142) !important;
+  color: #61998e !important;
 }
-
 a:hover {
   text-decoration: underline;
 }
-
 .navbar-brand {
-    height: 72px;
-    background: none;
-    /*background: url(../img/ftf_geonode_logo.png) no-repeat;*/
-    background-position: center;
+  height: 72px;
+  background: none;
+  /*background: url(../img/ftf_geonode_logo.png) no-repeat;*/
+  background-position: center;
 }
-
 .navbar-brand div {
   font-family: "proxima-nova-soft", sans-serif !important;
   font-weight: 600 !important;
-  color: rgb(103, 155, 145) !important;
+  color: #679b91 !important;
 }
-
 .navbar-brand div:hover {
-  color: rgb(103, 155, 145) !important;
+  color: #679b91 !important;
 }
-
 .home .jumbotron {
-  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2)),url('../img/background/jumbotron_background.jpg') no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)), url('../img/background/jumbotron_background.jpg') no-repeat;
   background-position: center;
   background-size: cover;
   padding: 7.5em 0 3.75em;
 }
-
 .home .big-search {
-  background: rgb(241, 241, 241)!important;
+  background: #f1f1f1 !important;
 }
-
-
 #ftf_geonode_navbar {
   /*background-image: url(../img/background/ftf_background.png);*/
   background: white;
   background-repeat: repeat;
   padding: 2px 0px;
-  border-bottom: 2px solid rgb(97, 153, 142);
+  border-bottom: 2px solid #61998e;
 }
-
 #ftf_geonode_navbar ul li a {
   font-family: "proxima-nova-soft", sans-serif !important;
   font-weight: 600 !important;
-  color: rgb(80, 87, 89);
+  color: #505759;
   padding-top: 25px;
   padding-bottom: 25px;
 }
-
-#ftf_geonode_navbar #navbar ul li:hover a, #ftf_geonode_navbar ul li:focus a, #ftf_geonode_navbar ul li:selected a {
-  color: rgb(208, 15, 66) !important;
+#ftf_geonode_navbar #navbar ul li:hover a,
+#ftf_geonode_navbar ul li:focus a,
+#ftf_geonode_navbar ul li:selected a {
+  color: #d00f42 !important;
 }
-
-#datasets category:hover i, #datasets category:hover h4 {
-  color: rgb(208, 15, 66) !important;
-}
-
-
 #ftf_geonode_navbar .navbar-nav .dropdown-menu {
-    background-color: white;
-    border-top: 1px solid rgb(97, 153, 142);
+  background-color: white;
+  border-top: 1px solid #61998e;
 }
-
 #ftf_geonode_navbar .navbar-nav ul.dropdown-menu li a {
-  color: rgb(80, 87, 89);
+  color: #505759;
   font-weight: normal;
   padding: 3px 20px;
 }
-
-
 #ftf_geonode_navbar .navbar-nav .dropdown-menu li a:hover {
-    background-color: white;
-    border: 0;
+  background-color: white;
+  border: 0;
 }
-
 #ftf_geonode_navbar .navbar-nav .dropdown-menu li a:hover {
-    background-color: rgb(238, 238, 238);
-    color: rgb(208, 15, 66);
+  background-color: #eeeeee;
+  color: #d00f42;
 }
-
-
+#datasets category:hover i,
+#datasets category:hover h4 {
+  color: #d00f42 !important;
+}
 .resourcebase-snippet .item-thumb a {
   display: block;
-  border: 2px solid rgb(97, 153, 142);
+  border: 2px solid #61998e;
   background: black;
 }
 .resourcebase-snippet .item-thumb a:hover img {
   opacity: 0.6;
 }
-
 /*.geodash-map-overlays .geodash-map-overlay {
   background: rgba(0, 0, 0, 0.8);
   padding: 0.5rem 1rem;
   color: white !important;
 }*/
-
 .geodash-map-navbars .geodash-map-navbar div a {
   color: white !important;
   font-size: 1rem;
   font-family: FontAwesome;
 }
-
 .geodash-map-navbars .geodash-map-navbar div a:hover {
   color: #56b6c2 !important;
-  background: rgba(0,0,0, 1.0) !important;
+  background: #000000 !important;
 }
-
 /*.geodash-map-navbars .geodash-map-navbar.geodash-placement-bottom div a {
   background: rgba(0, 0, 0, 0.8);
   border-radius: 0px 0px 0px 0px;
   border-bottom: 2px solid rgb(97, 153, 142);
 }*/
+/* Search Filters */
+nav.filter h4 {
+  background: transparent;
+  border: 2px solid #61998e;
+  font-family: "proxima-nova-soft", sans-serif !important;
+  font-weight: 600 !important;
+}
+nav.filter h4:hover {
+  background: #e7e7e7;
+}
+a.btn-primary,
+a.btn-danger {
+  color: white !important;
+}
