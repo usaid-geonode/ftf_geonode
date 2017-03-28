@@ -4,4 +4,4 @@ import subprocess
 
 
 def get_version(version=None):
-    return "0.0.1"
+    return os.getenv('GEONODE_VERSION', '0.0.1')
