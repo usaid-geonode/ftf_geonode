@@ -5,7 +5,9 @@ import requests
 import shlex
 import shutil
 import sys
+import requests
 import yaml
+import urllib
 
 from subprocess import call, check_call, check_output
 import defusedxml.ElementTree as et
@@ -65,22 +67,31 @@ def run(args):
     now = datetime.datetime.now()
     #==#
     verbose = args.verbose
+    clean = args.clean
+    url = args.url
     path_pbf = args.pbf
     config_path = args.config
     temp = args.temp
     user_geometry_type = args.geometry_type
     user_layer_id = args.layer_id
+    user_layer_name_prefix = args.layer_name_prefix
+    user_layer_title_prefix = args.layer_title_prefix
     #==#
     print "################"
     print "Running import_osm.py w/ args: ", args
     print ""
-    if path_pbf is None:
-        print "Error: pbf must be specified.  "
+    if path_pbf is None and url is None:
+        print "Error: url or pbf must be specified.  "
         sys.exit(1)
     if config_path is None:
         print "Error: config must be specified.  "
         sys.exit(1)
     #==#
+    if clean and temp:
+        if os.path.isfile(path_pbf):
+            os.remove(path_pbf)
+        if os.path.isdir(temp):
+            shutil.rmtree(temp)
     config_text = ""
     with open(config_path, "r") as f:
         config_text = f.read()
@@ -94,18 +105,27 @@ def run(args):
     basepath = os.path.split(basepath)[1]
     path_osm = os.path.join(temp, basepath + ".o5m")
     #==#
-    if os.path.isfile(path_pbf) == False:
-        print "Error: Could not find PBF file"
-        sys.exit(1)
-    #==#
     if not os.path.isdir(temp):
         os.makedirs(temp)
+    #==#
+    #print "os.path.isfile(path_pbf):", os.path.isfile(path_pbf)
+    #print "path_pbf:", path_pbf
+    if os.path.isfile(path_pbf) == False:
+        if url is not None:
+            print "Downloading pbf file from url <", url, ">."
+            urllib.URLopener().retrieve(url, path_pbf)
+            if os.path.isfile(path_pbf) == False:
+                print "Error: Could not download PBF file from url <", url, ">."
+                sys.exit(1)
+        else:
+            print "Error: Could not find pbf file and url is none."
+            sys.exit(1)
     #==#
     if os.path.isfile(path_osm) == False:
         print "####################"
         print "Coverting input pbf to o5m"
         print check_output(shlex.split("osmconvert "+path_pbf+" -o="+path_osm))
-    #==#
+    #==#c
     for cache in config.get("caches"):
         print "####################"
         print "Creating cache", cache["id"]
@@ -206,8 +226,8 @@ def run(args):
             call_command(
                 'importlayers',
                 path_shp_actual,
-                layername=layerId,
-                title=layerTitle,
+                layername=(user_layer_name_prefix + layerId if user_layer_name_prefix else layerId),
+                title=(user_layer_title_prefix + layerTitle if user_layer_title_prefix else layerTitle),
                 abstract=abstract,
                 date=now.strftime("%Y-%m-%d %H:%M:%S"),
                 category=category,
@@ -247,6 +267,7 @@ licenses = [x.abbreviation or x.name for x in License.objects.all()]
 categories = [x.identifier for x in TopicCategory.objects.all()]
 #==#
 parser = argparse.ArgumentParser(description='Update GeoNode with data from .osm file.')
+parser.add_argument("--url", help="The url to the remote .osm.pbf file.")
 parser.add_argument("--pbf", help="The path to the .osm.pbf file.")
 parser.add_argument("--config", help="The path to the config file.")
 parser.add_argument("--temp", default="temp", help="The path to the temp folder.")
@@ -254,7 +275,10 @@ parser.add_argument("--category", default=None, help="The category for the layer
 parser.add_argument("--license", default=None, help="The license for the layers. One of the following: "+(", ".join(licenses)))
 parser.add_argument("--regions", default=None, help="The GeoNode metadata region for the layers.")
 parser.add_argument("--geometry-type", '-gt', default=None, help="Only update layers with geometry type POINT.")
+parser.add_argument("--layer-name-prefix", default=None, help="Prefix for layer names, e.g., nepal_")
+parser.add_argument("--layer-title-prefix", default=None, help="Prefix for layer titles, e.g., Nepal.")
 parser.add_argument("--layer-id", '-l', default=None, help="Only layers with the layer id.")
+parser.add_argument('--clean', default=0, action='count', help="Start from scratch (clean out temp files).")
 parser.add_argument('--verbose', '-v', default=0, action='count', help="Print out intermediate status messages.")
 args = parser.parse_args()
 
