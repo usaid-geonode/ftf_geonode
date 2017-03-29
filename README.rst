@@ -24,4 +24,9 @@ geonode.geocenter.io ansible_host=geonode.geocenter.io ansible_ssh_private_key_f
 sudo ln -s libproj.so.9.1.0 libproj.so.0
 
 
-cd ftf_geonode/static; npm install ; 
+cd ftf_geonode/static; npm install ;
+
+
+Cron Job for running every saturday at 10pm
+
+0 22 * * 6 /home/ubuntu/ftf_geonode.git/scripts/osm_refresh.sh >> /home/ubuntu/osm_refresh.out
