@@ -8,17 +8,31 @@
   <h2>APIs</h2>
 </div>
 <div class="row" style="position:relative;">
-  <div id="ddf-prize" style="position:absolute; top:-80px"></div>
+  <div id="apis-intro" style="position:absolute; top:-80px"></div>
   <div class="col-md-8">
-    <h3>Baseline Data</h3>
-    <p>TBD</p>
+    <h3>Introduction</h3>
+    <p>Developers can interact with the Data Driven Farming GeoNode through 3 sets of APIs: CSW, OGC Services, and the internal GeoNode API.</p>
   </div>
 </div>
 <div class="row" style="position:relative;">
-  <div id="ddf-geonode" style="position:absolute; top:-80px"></div>
+  <div id="apis-csw" style="position:absolute; top:-80px"></div>
   <div class="col-md-8">
-    <h3>Data Driven Farming GeoNode</h3>
-    <p>TBD</p>
+    <h3>CSW</h3>
+    <p>The CSW endpoint is: <a href="/catalogue/csw">/catalogue/csw</a>.  To retrieve metadata records run something like this:<br><pre>/catalogue/csw?request=GetRecords&amp;service=CSW&amp;version=2.0.2&amp;resultType=results&amp;maxRecords=1000&amp;elementsetname=full&amp;typenames=csw:Record&amp;outputschema=http://www.isotc211.org/2005/gmd.</pre><br>This endpoint can be used by other systems, such as Data.Gov and HDX, to automatically harvest records from the Data Driven Farming GeoNode.</p>
+  </div>
+</div>
+<div class="row" style="position:relative;">
+  <div id="apis-ogc" style="position:absolute; top:-80px"></div>
+  <div class="col-md-8">
+    <h3>OGC</h3>
+    <p>All layers in the Data Driven Farming GeoNode are accessible via OGC Services.  The WMS Capabilities document is accessible with: <a href="/geoserver/wms?SERVICE=WMS&amp;REQUEST=GetCapabilities">/geoserver/wms?SERVICE=WMS&amp;REQUEST=GetCapabilities</a>.  This endpoint can be used by geospatial analysts to pull layers directly into their desktop environment (<a href="/docs/integration.html">/docs/integration.html</a>). OGC services can also be used to pull layers directly from the Data Driven Farming GeoNode into web maps to make mashups.</p>
+  </div>
+</div>
+<div class="row" style="position:relative;">
+  <div id="apis-internal" style="position:absolute; top:-80px"></div>
+  <div class="col-md-8">
+    <h3>Internal</h3>
+    <p>In addition to CSW and OGC APIs, GeoNode also has an internal API for retrieving a list of layers, publishing data, and more.  You can review the community opensource code at <a href="https://github.com/geonode/geonode">https://github.com/geonode/geonode</a>.  If you have questions, get in contact on the <a href="https://lists.osgeo.org/mailman/listinfo/geonode-devel">geonode-devel</a> listserve.</p>
   </div>
 </div>
 {% endblock %}
