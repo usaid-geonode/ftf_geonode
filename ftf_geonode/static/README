@@ -1,8 +1,21 @@
+# Introduction
+
 This directory is used to store static assets for your project. User media files
 (FileFields/ImageFields) are not stored here.
 
 The convention for this directory is:
 
  * css/ — stores CSS files
+ * less/ — stores LESS files
  * js/ — stores Javascript files
  * img/ — stores image files
+
+
+#Gulp
+
+Gulp can be used to automatically compile less files into css.  To install gulp do the following.
+
+1.  CD into this directory and install dependencies with `npm install`
+2.  Install gulp globally for all users with `sudo npm install -g gulp`
+
+After installing, you can run Gulp simply with `gulp` and the process will watch your less files for changes.

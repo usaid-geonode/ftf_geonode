@@ -613,8 +613,11 @@ _DEFAULT_UPLOADER = {
 }
 UPLOADER = os.getenv('UPLOADER', _DEFAULT_UPLOADER)
 
+
+CATALOGUE_DEFAULT_URL = SITEURL + ("" if SITEURL.endswith("/") else "/") + "catalogue/csw"
+
 # CSW settings
-_DEFAULT_CATALOGUE = {
+CATALOGUE = {
     'default': {
         # The underlying CSW implementation
         # default is pycsw in local mode (tied directly to GeoNode Django DB)
@@ -627,7 +630,7 @@ _DEFAULT_CATALOGUE = {
         # 'ENGINE': 'geonode.catalogue.backends.generic',
 
         # The FULLY QUALIFIED base url to the CSW instance for this GeoNode
-        'URL': '%scatalogue/csw' % SITEURL,
+        'URL': CATALOGUE_DEFAULT_URL,
         # 'URL': 'http://localhost:8080/geonetwork/srv/en/csw',
         # 'URL': 'http://localhost:8080/deegree-csw-demo-3.0.4/services',
 
@@ -636,7 +639,7 @@ _DEFAULT_CATALOGUE = {
         # 'PASSWORD': 'admin',
     }
 }
-CATALOGUE = os.getenv('CATALOGUE',_DEFAULT_CATALOGUE)
+
 # pycsw settings
 _DEFAULT_PYSCSW = {
     # pycsw configuration
