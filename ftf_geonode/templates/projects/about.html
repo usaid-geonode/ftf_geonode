@@ -1,0 +1,21 @@
+{% extends "site_base.html" %}
+
+{% load i18n base_tags %}
+{% block title %}About - Data Driven Farming GeoNode{% endblock %}
+
+{% block body_outer %}
+<div class="page-header">
+  <h2>About</h2>
+</div>
+{% for section in project.about.sections %}
+<div class="row" style="position:relative;">
+  <div id="{{ section.id }}" style="position:absolute; top:-80px"></div>
+  <div class="col-md-8">
+    <h3>{{ section.title }}</h3>
+    {% for line in section.lines %}
+    <p>{{ line | md2html | strip_tag:"p" | bleach | safe }}</p>
+    {% endfor %}
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

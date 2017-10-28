@@ -1,0 +1,201 @@
+{% load i18n base_tags %}
+---
+projects:
+  - id: data-driven-farming
+    title: Data Driven Farming
+    description: "Feed the Future's [Data Driven Farming Prize](http://datadrivenfarming.challenges.org/) is seeking tools and approaches that source, analyze and translate data into actionable, timely and context-specific information for smallholder farmers to improve value from agricultural productivity. This GeoNode provides open data and APIs to support these efforts."
+    aliases:
+      - data driven farming
+      - ddf
+    background: "rgb(51, 51, 51)"
+    preview:
+      title: ""
+      image:
+        url: {{ STATIC_URL }}img/preview/data_driven_farming_preview.jpg
+    favicon: "{{ STATIC_URL }}favicon/usaid_favicon.ico"
+    jumbotron:
+      image:
+        attribution: Background Image from [https://www.ars.usda.gov/oc/images/photos/apr01/k9388-14/](https://www.ars.usda.gov/oc/images/photos/apr01/k9388-14/)
+        url: "{{ STATIC_URL }}img/background/jumbotron_background.jpg"
+    tiles:
+      - name: "Boundaries"
+        title: "Political and administrative boundaries, land use maps, zoning maps, cadastral surveys, land ownership."
+        classes: "fa fa-flag fa-4x"
+        url: "/search/?limit=100&offset=0&category__identifier__in=boundaries&category__identifier__in=planningCadastre"
+      - name: "Weather"
+        title: "Cloud cover, weather, climate, atmospheric conditions, climate change, precipitation"
+        classes: "fa fa-umbrella fa-4x"
+        url: "/search/?limit=100&offset=0&category__identifier__in=climatologyMeteorologyAtmosphere"
+      - name: "Elevation"
+        title: "Altitude, bathymetry, digital elevation models, slope, derived products"
+        classes: "fa fa-level-up fa-4x"
+        url: "/search/?limit=100&offset=0&category__identifier__in=elevation"
+      - name: "Geology"
+        title: "Geophysical features and processes, geology, minerals, sciences dealing with the composition, structure and origin of the earth s rocks, risks of earthquakes, volcanic activity, landslides, gravity information, soils, permafrost, hydrogeology, erosion."
+        classes: "fa fa-globe fa-4x"
+        url: "/search/?limit=100&offset=0&category__identifier__in=geoscientificInformation"
+      - name: "Land Cover"
+        title: "Land cover, topographic maps, imagery, unclassified images, annotations."
+        classes: "fa fa-tree fa-4x"
+        url: "/search/?limit=100&offset=0&category__identifier__in=imageryBaseMapsEarthCover"
+      - name: "Nature"
+        title: "Wildlife, vegetation, biological sciences, ecology, wilderness, sealife, wetlands, habitat. Environmental resources, protection and conservation. Agriculture, irrigation, aquaculture, plantations, herding, pests and diseases affecting crops and livestock"
+        classes: "fa fa-leaf fa-4x"
+        url: "/search/?limit=100&offset=0&category__identifier__in=farming&category__identifier__in=environment"
+      - name: "Places"
+        title: "Addresses, geodetic networks, control points, postal zones and services, place names"
+        classes: "fa fa-map-marker fa-4x"
+        url: "/search/?limit=100&offset=0&category__identifier__in=location"
+      - name: "Population"
+        title: "Settlements, anthropology, archaeology, education, traditional beliefs, manners and customs, demographic data, recreational areas and activities, social impact assessments, crime and justice, census information. Economic activities, conditions and employment."
+        classes: "fa fa-male fa-4x"
+        url: "#"
+      - name: "Transportation"
+        title: "Roads, airports/airstrips, shipping routes, tunnels, nautical charts, vehicle or vessel location, aeronautical charts, railways."
+        classes: "fa fa-road fa-4x"
+        url: "/search/?limit=100&offset=0&category__identifier__in=transportation"
+      - name: "Water"
+        title: "Rivers and glaciers, salt lakes, water utilization plans, dams, currents, floods, water quality, hydrographic charts, tides, tidal waves, coastal information, reefs."
+        classes: "fa fa-tint fa-4x"
+        url: "/search/?limit=100&offset=0&category__identifier__in=inlandWaters"
+    about:
+      sections:
+        - id: ddf-prize
+          title: Data Driven Farming Prize
+          lines:
+            - "Feed the Future's [Data Driven Farming Prize](http://datadrivenfarming.challenges.org/) is seeking tools and approaches that source, analyze and translate data into actionable, timely and context-specific information for smallholder farmers to improve value from agricultural productivity."
+        - id: ddf-geonode
+          title: "Data Driven Farming GeoNode"
+          lines:
+            - "Feed the Future's Data Driven Farming GeoNode is maintained by USAID to faciliate access to key operational, thematic, and contextual datasets to accelerate innovation for the Data Driven Farming Prize."
+        - id: ftf
+          title: "Feed the Future"
+          lines:
+            - "[Feed the Future](http://feedthefuture.gov/) is the U.S. Government’s global hunger and food security initiative. With a focus on smallholder farmers, particularly women, Feed the Future supports partner countries in developing their own agriculture sectors to generate opportunities for economic growth and trade, which can help reduce poverty and hunger."
+        - id: geonode
+          title: "GeoNode"
+          lines:
+            - "[GeoNode](http://geonode.org/) is a web-based Spatial Data Infrastructure (SDI) that enables sharing and collaborating on geospatial data. Users can upload existing shapefiles, edit data, and publish finished maps. GeoNode can also host static documents, such as PDF maps. GeoNode has robust support for open standards and OGC services, which streamlines integration with other systems and existing workflows. For example, data from GeoNode can be easily downloaded as a shapefile for use in ArcMap. At its core, GeoNode is designed to be customizable and extensible."
+            - "GeoNode is used throughout the world by international organizations, non-profits, and mapping agencies for supporting activities ranging from [emergency preparedness and response](https://geonode.wfp.org/), [disaster risk reduction](http://www.masdap.mw/), and many more. Additionally, GeoNode is supported by a rich ecosystem of [commercial providers](http://geonode.org/providers/) across the world who can help with training, technical support, or development of new features."
+    header:
+      title: "Data Driven\nFarming GeoNode"
+      links:
+        - id: nav_viewer
+          title: Viewer
+          url: "{% url "viewer" %}?main:config={% url "dashboard_config_viewer" %}"
+        - id: nav_layers
+          title: Datasets
+          url: "{% url "layer_browse" %}"
+        - id: nav_osm
+          title: OSM Extracts
+          url: "{% url "layer_browse" %}?keywords__slug__in=osm"
+        - id: nav_apis
+          title: APIs
+          url: "/apis"
+        - id: "nav_about"
+          title: About
+          url: "{% url "project_about" "data-driven-farming" %}"
+    footer:
+      style_link: "color: rgb(97, 153, 142) !important; font-family: 'Lato', sans-serif !important; font-size: 16px;"
+      groups:
+        - title: "Projects"
+          links:
+            - title: "Data Driven Farming"
+              url: "{% url "project" "data-driven-farming" %}"
+            - title: Youth Mappers
+              url: "{% url "project" "youthmappers" %}"
+        - title: "Data + APIs"
+          links:
+            - title: Open APIs
+              url: /apis
+            - title: "Open Data"
+              url: "{% url "layer_browse" %}?keywords__slug__in=data-driven-farming"
+            - title: OSM Extracts
+              url: "{% url "layer_browse" %}?keywords__slug__in=osm"
+            - title: Contribute
+              url: "{% url "layer_upload" %}"
+              authentication_required: true
+        - title: About
+          links:
+            - title: Data Driven Farming Prize
+              url: /projects/data-driven-farming/about#ddf-prize
+            - title: Data Driven Farming GeoNode
+              url: /projects/data-driven-farming/about#ddf-geonode
+            - title: Feed the Future
+              url: /projects/data-driven-farming/about#ftf
+            - title: GeoNode
+              url: /projects/data-driven-farming/about#geonode
+        - title: Powered by Open Source
+          links:
+            - image: {{ STATIC_URL }}img/logo/geonode_logo_white.png
+              url: http://geonode.org/
+              style: "margin-top: 8px;display:block;"
+  - id: youthmappers
+    title: YouthMappers
+    description: "Capitalizing on web-based open geospatial technologies, our mission is to cultivate a generation of young leaders to create resilient communities and  to define their world by mapping it.  [http://www.youthmappers.org/](http://www.youthmappers.org/)"
+    aliases:
+      - ym
+      - youth mappers
+      - youth-mappers
+    background: "rgb(203, 180, 146)"
+    favicon: "{{ STATIC_URL }}favicon/usaid_favicon.ico"
+    preview:
+      title: ""
+      image:
+        url: {{ STATIC_URL }}img/preview/youthmappers_preview.webp
+    jumbotron:
+      image:
+        url: "https://static.wixstatic.com/media/c0136c_b3a18bbfee7a4341a80fe97cc3f53f34~mv2.jpg/v1/fill/w_630,h_354,al_c,q_80,usm_0.66_1.00_0.01/c0136c_b3a18bbfee7a4341a80fe97cc3f53f34~mv2.webp"
+        attribution: Background Image from [http://www.youthmappers.org/news](http://www.youthmappers.org/news).
+    tiles: []
+    header:
+      logo: "{{ STATIC_URL }}/img/logo/youthmappers_logo_white.webp"
+      links:
+        - id: nav_layers
+          title: Datasets
+          url: "{% url "layer_browse" %}?keywords__slug__in=youthmappers"
+        - id: nav_osm
+          title: OSM Extracts
+          url: "{% url "layer_browse" %}?keywords__slug__in=osm"
+        - id: "nav_blog"
+          title: Blog
+          url: "http://www.youthmappers.org/blog"
+        - id: "nav_about"
+          title: About
+          url: "http://www.youthmappers.org/about-us"
+    footer:
+      style_title: "font-size: 20px;font-weight: bold;"
+      style_link: "color: white !important; font-family: \"open sans\", sans-serif; font-size: 16px;"
+      groups:
+        - title: "Projects"
+          links:
+            - title: "Data Driven Farming"
+              url: "{% url "project" "data-driven-farming" %}"
+            - title: Youth Mappers
+              url: "{% url "project" "youthmappers" %}"
+        - title: "Data + APIs"
+          links:
+            - title: Open APIs
+              url: /apis
+            - title: "Open Data"
+              url: "{% url "layer_browse" %}?keywords__slug__in=youthmappers"
+            - title: OSM Extracts
+              url: "{% url "layer_browse" %}?keywords__slug__in=osm"
+            - title: Contribute
+              url: "{% url "layer_upload" %}"
+              authentication_required: true
+        - title: About
+          links:
+            - title: YouthMappers
+              url: "http://www.youthmappers.org/about-us"
+            - title: Blog
+              url: "http://www.youthmappers.org/blog"
+            - title: News
+              url: "http://www.youthmappers.org/news"
+            - title: Partners
+              url: "http://www.youthmappers.org/partners"
+        - title: Powered by Open Source
+          links:
+            - image: {{ STATIC_URL }}img/logo/geonode_logo_white.png
+              url: http://geonode.org/
+              style: "margin-top: 8px;display:block;"

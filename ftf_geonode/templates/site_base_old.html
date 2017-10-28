@@ -2,7 +2,7 @@
 
 {% load i18n base_tags avatar_tags %}
 
-{% block body_style %}{% if project %}background:{{ project.background|default:"rgb(70, 71, 76)" }};{% endif %}{% endblock %}
+{% block body_style %}{% if project %}background:{{ project.background|default:"rgb(51, 51, 51)" }};{% endif %}{% endblock %}
 
 {% block extra_head %}
 <script src="https://use.typekit.net/gyy2upl.js"></script>
@@ -13,28 +13,6 @@
 <link rel="icon" href="{{ STATIC_URL }}img/ddf/cropped-ddf-logo-3-192x192.png" sizes="192x192" />
 <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}img/ddf/cropped-ddf-logo-3-180x180.png" />
 <meta name="msapplication-TileImage" content="{{ STATIC_URL }}img/ddf/cropped-ddf-logo-3-270x270.png" />
-{% if project.favicon %}
-<link rel="shortcut icon" href="{{ project.favicon }}" type="image/vnd.microsoft.icon" />
-{% else %}
-<link rel="shortcut icon" href="{{ STATIC_URL }}favicon/usaid_favicon.ico" type="image/vnd.microsoft.icon" />
-{% endif %}
-{% if not project %}
-{% endif %}
-<style>
-  footer ul li, footer ul li a {
-    font-family: "Source Sans Pro", Helvetica, Arial, "Arial Unicode MS", "sans serif";
-    font-size: 14px;
-    color: white !important;
-  }
-  footer span {
-    font-weight: bold;
-    line-height: 1.3em;
-    text-transform: uppercase;
-  }
-  footer ul {
-    margin-top: 12px;
-  }
-</style>
 {% endblock %}
 
 {% block header %}
@@ -46,18 +24,18 @@
     </button>
     {% if project.header %}
     {% if project.header.logo %}
-    <a class="navbar-brand" href="{% url "project" project.id %}">
+    <a class="navbar-brand" href="{% url "home" %}">
       <img src="{{ project.header.logo }}" style="max-width:100%;max-height:100%;"/>
     </a>
     {% else %}
-    <a class="navbar-brand" href="{% url "project" project.id %}">
-      <div class="row">{{ project.header.title | md2html | strip_tag:"p" | safe }}</div>
+    <a class="navbar-brand" href="{% url "home" %}">
+      <div class="row">Data Driven</div><div class="row">Farming GeoNode</div>
     </a>
     {% endif %}
     {% else %}
     <!--<a class="navbar-brand" href="{% url "home" %}"><img src="{{ STATIC_URL }}/img/logo/ftf_geonode_white.png" style="max-width:100%;max-height:100%;"/></a>-->
     <a class="navbar-brand" href="{% url "home" %}">
-      <img src="{{ STATIC_URL}}img/logo/usaid_logo_white.png" style="max-width:100%;max-height:100%;"/>
+      <div class="row">Data Driven</div><div class="row">Farming GeoNode</div>
     </a>
     {% endif %}
   </div>
@@ -68,6 +46,7 @@
       <li id="{{ link.id }}"><a href="{{ link.url }}">{% trans link.title %}</a></li>
       {% endfor %}
       {% else %}
+      <li id="nav_viewer"><a href="{% url "viewer" %}?main:config={% url "dashboard_config_viewer" %}">{% trans "Viewer" %}</a></li>
       <li id="nav_layers"><a href="{% url "layer_browse" %}">{% trans "Datasets" %}</a></li>
       <li id="nav_osm"><a href="{% url "layer_browse" %}?keywords__slug__in=osm">{% trans "OSM Extracts" %}</a></li>
       <li id="nav_apis"><a href="/apis">{% trans "APIs" %}</a></li>
@@ -122,15 +101,15 @@
 {% endblock header %}
 
 {% block footer %}
-<footer id="usaid_geonode_footer">
+<footer id="ftf_geonode_footer">
   <div class="container">
     <div class="row">
       <!--<div class="col-md-3"><a href="https://feedthefuture.gov/"><img src="{{ STATIC_URL }}img/logo/ftf_logo_white.png" style="max-width:100%;" /></a></div>-->
       {% if project and project.footer.groups %}
       {% for group in project.footer.groups %}
       <div class="col-md-{{ project.footer.groups|length|divide_inverted:12  }}">
-        <span style="{{ project.footer.style_title }}">{{ group.title }}</span>
         <ul class="list-unstyled">
+          <li style="{{ project.footer.style_title }}">{{ group.title }}</li>
           {% for link in group.links %}
           {% if user.is_authenticated or not link.authentication_required %}
           <li>
@@ -149,23 +128,25 @@
       {% endfor %}
       {% else %}
       <div class="col-md-3">
-        <span>Projects</span>
         <ul class="list-unstyled">
-          <li><a href="{% url "project" "data-driven-farming" %}">Data Driven Farming</a></li>
-          <li><a href="{% url "project" "youthmappers" %}">Youth Mappers</a></li>
+          <li>Data</li>
+          <li><a href="{% url "layer_browse" %}">Open Data</a></li>
+          <li><a href="{% url "layer_browse" %}?keywords__slug__in=osm">OSM Extracts</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url "layer_upload" %}">Contribute</a></li>
+          {% endif %}
         </ul>
       </div>
       <div class="col-md-3">
-        <span>Developer</span>
         <ul class="list-unstyled">
+          <li>Developer</li>
           <li><a href="/apis">Open APIs</a></li>
           <li><a href="http://geonode.org">GeoNode.org</a></li>
-          <li><a href="http://openstreetmap.org">OpenStreetMap.org</a></li>
         </ul>
       </div>
       <div class="col-md-3">
-        <span>About</span>
         <ul class="list-unstyled">
+          <li>About</li>
           <li><a href="/about/#ddf-prize">Data Driven Farming Prize</a></li>
           <li><a href="/about/#ddf-geonode">Data Driven Farming GeoNode</a></li>
           <li><a href="/about/#ftf">Feed the Future</a></li>
@@ -173,8 +154,8 @@
         </ul>
       </div>
       <div class="col-md-3">
-        <span>Powered by Open Source</span>
         <ul class="list-unstyled">
+          <li>Powered by Open Source</li>
           <li>
             <a href="http://geonode.org/" style="margin-top: 8px;display:block;">
               <img src="{{ STATIC_URL }}img/logo/geonode_logo_white.png" style="max-width:60%;" />

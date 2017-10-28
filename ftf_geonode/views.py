@@ -5,13 +5,49 @@ try:
 except ImportError:
     import json
 
+from django.conf import settings
+from django.core.urlresolvers import reverse
+from django.shortcuts import render_to_response
 from django.template.loader import get_template
 from django.template import RequestContext
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 from geonode.base.models import TopicCategory
 
 from ftf_geonode.utils import build_overlays, build_navbar_title, build_navbar_toolbar, build_navbar_featurelayers, build_navbar_categories, build_baselayers, build_featurelayers
+
+
+def project(request, id, template="project.html"):
+    if id is not None and len(id) > 0:
+        data = yaml.load(get_template("projects.yml").render({
+            "STATIC_URL": settings.STATIC_URL
+        }))
+        if data is not None:
+            project = {x['id']: x for x in data.get("projects", [])}.get(id)
+            if project is not None:
+                return render_to_response(template, RequestContext(request, {"project": project}))
+            else:
+                return HttpResponseRedirect(reverse('home'))
+        else:
+            return HttpResponseRedirect(reverse('home'))
+    else:
+        return HttpResponseRedirect(reverse('home'))
+
+def project_about(request, id, template="projects/about.html"):
+    if id is not None and len(id) > 0:
+        data = yaml.load(get_template("projects.yml").render({
+            "STATIC_URL": settings.STATIC_URL
+        }))
+        if data is not None:
+            project = {x['id']: x for x in data.get("projects", [])}.get(id)
+            if project is not None:
+                return render_to_response(template, RequestContext(request, {"project": project}))
+            else:
+                return HttpResponseRedirect(reverse('home'))
+        else:
+            return HttpResponseRedirect(reverse('home'))
+    else:
+        return HttpResponseRedirect(reverse('home'))
 
 def dashboard_config_viewer(request):
     data = None

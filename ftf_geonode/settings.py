@@ -275,6 +275,10 @@ GEONODE_CONTRIB_APPS = (
 # Uncomment the following line to enable contrib apps
 # GEONODE_APPS = GEONODE_APPS + GEONODE_CONTRIB_APPS
 
+GEONODE_APPS = GEONODE_APPS + (
+    'geonode.contrib.projects',
+)
+
 INSTALLED_APPS = (
 
     'modeltranslation',
@@ -1094,10 +1098,8 @@ if 'geonode.geoserver' in INSTALLED_APPS:
 THESAURI = []
 
 # FTF GeoNode Settings
-
 MEMCACHED_HOST = "localhost"
 MEMCACHED_PORT = 11212
-
 TEMPLATE_LAYER_MODAL_DOWNLOAD_LINKS = "layer_modal_download_links.yml"
 
 try:

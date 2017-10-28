@@ -35,6 +35,7 @@ geometry_type_to_path = {
 #    "LINE": "ARC"
 #}
 
+SCRIPT_PATH = os.path.realpath(__file__)
 
 def extract_tags(node):
     tags = []
@@ -124,6 +125,8 @@ def run(args):
     if os.path.isfile(path_osm) == False:
         print "####################"
         print "Coverting input pbf to o5m"
+        print "path_pbf:", path_pbf
+        print "path_osm:", path_osm
         print check_output(shlex.split("osmconvert "+path_pbf+" -o="+path_osm))
     #==#c
     for cache in config.get("caches"):
@@ -159,7 +162,7 @@ def run(args):
             path_osm_cleaned = os.path.join(cwd, basepath + "-" + slug(layerId) + "-cleaned.osm")
             path_shp = os.path.join(cwd, basepath + "-" + slug(layerId)+"-shp")
             path_shp_actual = os.path.join(path_shp, geometry_type_to_path[layer_geometry_type]+".shp")
-            path_osm_config = os.path.join("osm", "conf", layerId+".ini")
+            path_osm_config = os.path.normpath(os.path.join(SCRIPT_PATH, "..", "..", "osm", "conf", layerId+".ini"))
             #path_sld_template = os.path.join("osm", "conf", layerId+".sld")
             #path_sld_actual = os.path.join(path_shp, geometry_type_to_path[layer_geometry_type]+".sld")
 

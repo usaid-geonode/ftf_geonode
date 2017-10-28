@@ -32,7 +32,7 @@ from geonode.api.urls import api
 from geonode.api.views import verify_token, roles, users, admin_role
 from geonode.layers.views import api_layers_remove
 
-from ftf_geonode.views import dashboard_config_viewer, dashboard_config_all, dashboard_config_category, dashboard_config_template, dashboard_state
+from ftf_geonode.views import project, project_about, dashboard_config_viewer, dashboard_config_all, dashboard_config_category, dashboard_config_template, dashboard_state
 
 import autocomplete_light
 
@@ -54,6 +54,8 @@ sitemaps = {
 urlpatterns = patterns('',
 
                        # FTF Pages
+                       url(r'^projects/(?P<id>[^/]*)$', project, name='project'),
+                       url(r'^projects/(?P<id>[^/]*)/about$', project_about, name='project_about'),
                        url(r'^viewer/?$', TemplateView.as_view(template_name='viewer.html'), name='viewer'),
                        url(r'^apis/?$', TemplateView.as_view(template_name='apis.html'), name='apis'),
                        url(r'^dashboards/viewer/config$', dashboard_config_viewer, name='dashboard_config_viewer'),

@@ -8,47 +8,67 @@ This is where you can override the hero area block. You can simply modify the co
 {% block hero %}
 <div class="jumbotron" style="position:relative;">
   <div class="container">
-    <h2 style="font-family: 'Montserrat', sans-serif;color:white;"><span style="letter-spacing: 0.2rem;">Data Driven Farming GeoNode</span></h2>
-    <p>{% blocktrans %}Feed the Future's <a href="http://datadrivenfarming.challenges.org/">Data Driven Farming Prize</a> is seeking tools and approaches that source, analyze and translate data into actionable, timely and context-specific information for smallholder farmers to improve value from agricultural productivity.  This GeoNode provides open data and APIs to support these efforts.{% endblocktrans %}</p>
+    <h2 style="font-family: 'Montserrat', sans-serif;color:white;"><span style="letter-spacing: 0.2rem;">USAID GeoNode</span></h2>
+    <p>Enhancing humanitarian and development projects.</p>
   </div>
   <div style="position:absolute; right: 2rem; bottom: 1rem;font-size: 12px;"><span>Background Image from </span><a href="https://www.ars.usda.gov/oc/images/photos/apr01/k9388-14/" target="_blank">https://www.ars.usda.gov/oc/images/photos/apr01/k9388-14/</a></div>
 </div>
 {% endblock %}
+
+{% block bigsearch %}{% endblock %}
 
 
 {% block datasets %}
   <section id="datasets">
   	<div class="container">
   		<div class="row">
-  			<div class="container text-center">
-  				<h1>Discover the available datasets.</h1>
-          {% for tile in INDEX_TILES %}
-  				<div class="col-xs-4 col-sm-2">
-  					<a data-toggle="tooltip" data-placement="auto" href="{{ tile.url }}" title="{{ tile.title }}">
-  						<div class="category">
-  							<i class="{{ tile.classes }}"></i>
-  							<h4>{{ tile.name }}</h4>
-  						</div>
-  					</a>
-  				</div>
-          {% endfor %}
+  			<div class="container">
+  				<h1 class="text-center">Discover projects</h1>
+          <div class="row">
+            {% for project in PROJECTS %}
+    				<div class="col-xs-6 col-md-3">
+    					<a
+                class="thumbnail"
+                data-toggle="tooltip"
+                data-placement="auto"
+                href="{% url "project" project.id %}"
+                title="Click to discover data for {{ project.title }}.">
+                {% if project.preview.image.url %}
+                <img src="{{ project.preview.image.url }}" alt="{{ project.title }}">
+                {% endif %}
+    						<div class="caption">
+    							<h2>{{ project.title }}</h2>
+    						</div>
+    					</a>
+    				</div>
+            {% endfor %}
+          </div>
   			</div>
   		</div>
+      <div class="row">
+        <div class="container">
+          <h1 class="text-center">Data Available for Regions</h1>
+          <div class="row">
+            {% for region in REGIONS %}
+            <div class="col-xs-6 col-md-3">
+              <a
+                class="thumbnail"
+                data-toggle="tooltip"
+                data-placement="auto"
+                href="{% url "layer_browse" %}?regions__name__in={{ region }}"
+                title="Click to discover data for {{ region }}.">
+                <div class="caption">
+                  <h2>{{ region }}</h2>
+                </div>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
   	</div>
   </section>
   {% endblock %}
 
 {% block showcase %}
-<section id="showcase">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <a href="{% url "viewer" %}?main:config={% url "dashboard_config_viewer" %}"><h3>Viewer</h3></a>
-        <iframe
-            src="{% url "viewer" %}?main:config={% url "dashboard_config_template" 'home' %}"
-            style="width:100%; height: 300px;border: 2px solid rgb(97, 153, 142);" frameborder=0></iframe>
-      </div>
-    </div>
-  </div>
-</section>
 {% endblock %}
